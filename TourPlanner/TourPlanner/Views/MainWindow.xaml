@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
+        xmlns:ViewModel="clr-namespace:TourPlanner.ViewModel"
         mc:Ignorable="d"
         Title="TourPlanner" Height="450" Width="800" MinWidth="500" MinHeight="300">
+
+    <Window.DataContext>
+        <ViewModel:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
