@@ -19,6 +19,7 @@ namespace TourPlanner.ViewModel
 {
     class MainViewModel : INotifyPropertyChanged
     {
+        //Variables
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Tour _currentTour;
@@ -31,6 +32,7 @@ namespace TourPlanner.ViewModel
 
         private ObservableCollection<TourLog> _currentTourLogs;
 
+        //Properties
         public ObservableCollection<Tour> Tours {
             get
             {
@@ -101,6 +103,7 @@ namespace TourPlanner.ViewModel
             }
         }
 
+        //Commands
         public RelayCommand AddTourCommand { get; }
         public RelayCommand AddTourLogCommand {get;}
         public RelayCommand DeleteTourCommand { get; }
@@ -111,12 +114,16 @@ namespace TourPlanner.ViewModel
 
         public MainViewModel()
         {
+            //Commands
+
+            //Create new Tour
             AddTourCommand = new RelayCommand((_) =>
             {
                 Tours.Add(new Tour(100, "New Tour", "Tour Description"));
                 Debug.Write("Tour added");
             });
 
+            //Create new Tour Log
             AddTourLogCommand = new RelayCommand((_) =>
             {
                 TourLogs.Add(new TourLog(CurrentTour.ID, 10, "4.5.2017", "Super", 12.65f, "6:34", 2));
@@ -126,16 +133,19 @@ namespace TourPlanner.ViewModel
 
             });
 
+            //Select current Tour
             SelectTour = new RelayCommand(x =>
             {
                 selectTour(x as Tour);
             });
 
+            //Select current Tour Log
             SelectTourLog = new RelayCommand(x =>
             {
                 selectTourLog(x as TourLog);
             });
 
+            //Delete Tour
             DeleteTourCommand = new RelayCommand((_) =>
             {
                 var t = Tours.Where(X => X.ID != CurrentTour.ID);
@@ -146,12 +156,16 @@ namespace TourPlanner.ViewModel
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
             });
 
+            //Delete Tour Log
             DeleteTourLogCommand = new RelayCommand((_) =>
             {
                 TourLogs.Remove(TourLogs.Where(X => X.TourID == CurrentTour.ID && X.TourLogID == CurrentTourLog.TourLogID).Single());
+                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                currentTourLogs = new ObservableCollection<TourLog>(cl);
                 Debug.Print("Tour Log deleted");
             });
 
+            //Create ObservableCollectiions
             Tours = new ObservableCollection<Tour>();
             currentTourLogs = new ObservableCollection<TourLog>();
             TourLogs = new ObservableCollection<TourLog>();
@@ -161,14 +175,16 @@ namespace TourPlanner.ViewModel
             Tours.Add(new Tour(1, "Tour 2", "Description 2"));
 
             //add some tour logs
-
             TourLogs.Add(new TourLog(0, 0, "1.1.2020", "Awesome", 23.02f, "1:34", 2));
             TourLogs.Add(new TourLog(0, 1, "21.1.2019", "Great", 13.42f, "1:14", 1));
 
             TourLogs.Add(new TourLog(1, 0, "1.2.2013", "Fine", 23.02f, "1:24", 2));
             TourLogs.Add(new TourLog(1, 1, "21.1.2016", "Amazing", 13.42f, "1:19", 2));
 
+            //assign current tour
             CurrentTour = Tours.First();
+
+            //assign tour logs
             var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
             currentTourLogs = new ObservableCollection<TourLog>(cl);
 
