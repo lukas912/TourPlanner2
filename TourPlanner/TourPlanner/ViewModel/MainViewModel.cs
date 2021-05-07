@@ -32,7 +32,22 @@ namespace TourPlanner.ViewModel
 
         private ObservableCollection<TourLog> _currentTourLogs;
 
+        private string _search_input;
+
         //Properties
+        public string SearchInput
+        {
+            get
+            {
+                return _search_input;
+            }
+
+            set
+            {
+                _search_input = value;
+                OnPropertyChanged(nameof(Tours));
+            }
+        }
         public ObservableCollection<Tour> Tours {
             get
             {
@@ -110,6 +125,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand DeleteTourLogCommand { get; }
         public RelayCommand SelectTour { get; }
         public RelayCommand SelectTourLog { get; }
+        public RelayCommand SearchTourCommand { get; }
 
 
         public MainViewModel()
@@ -163,6 +179,16 @@ namespace TourPlanner.ViewModel
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
                 Debug.Print("Tour Log deleted");
+            });
+
+            //Search Tour
+            SearchTourCommand = new RelayCommand((_) =>
+            {
+                Debug.Print(SearchInput);
+                CurrentTour = Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault();
+                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                currentTourLogs = new ObservableCollection<TourLog>(cl);
+
             });
 
             //Create ObservableCollectiions
