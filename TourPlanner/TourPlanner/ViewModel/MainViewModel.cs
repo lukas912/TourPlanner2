@@ -71,6 +71,7 @@ namespace TourPlanner.ViewModel
         }
 
         public RelayCommand AddTourCommand { get; }
+        public RelayCommand DeleteTourCommand { get; }
 
         public RelayCommand SelectTour { get; }
 
@@ -86,6 +87,16 @@ namespace TourPlanner.ViewModel
             SelectTour = new RelayCommand(x =>
             {
                 selectTour(x as Tour);
+            });
+
+            DeleteTourCommand = new RelayCommand((_) =>
+            {
+                var t = Tours.Where(X => X.ID != CurrentTour.ID);
+                Tours = new ObservableCollection<Tour>(t);
+                Debug.Write("Tour deleted");
+                CurrentTour = Tours.First();
+                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                currentTourLogs = new ObservableCollection<TourLog>(cl);
             });
 
             Tours = new ObservableCollection<Tour>();
