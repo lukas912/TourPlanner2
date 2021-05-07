@@ -5,12 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
         xmlns:ViewModel="clr-namespace:TourPlanner.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="TourPlanner" Height="450" Width="800" MinWidth="500" MinHeight="300">
 
     <Window.DataContext>
         <ViewModel:MainViewModel />
     </Window.DataContext>
+
+    <Window.Resources>
+        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
@@ -52,15 +60,31 @@
         <Button Content="-" Grid.Row="2" Grid.Column="2" Margin="2,2,2,2"/>
         <Button Content="[]" Grid.Row="2" Grid.Column="3" Margin="2,2,2,2"/>
 
-        <ListBox x:Name="listBox_Tours" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="3" ItemsSource="{Binding Tours}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListView 
+            Margin="2"
+            Name="ListView1"
+            ItemsSource="{Binding Tours}"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="3">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction 
+                        Command="{Binding SelectTour}"
+                        CommandParameter="{Binding ElementName=ListView1, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="ID" Width="50" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn HeaderContainerStyle="{StaticResource ListViewStyle}" Header="Title" Width="200" DisplayMemberBinding="{Binding Title}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <Label Content="Logs:" Grid.Row="4" Grid.Column="4"/>
 
@@ -80,14 +104,14 @@
         <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2"/>
         <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2"/>
 
-        <Label Content="Title:" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
+        <Label Content="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
         <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4">
             <TabItem Header="Route">
                 <Label />
             </TabItem>
 
             <TabItem Header="Description">
-                <Label Content="Content goes here..." />
+                <Label Content="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </TabItem>
 
         </TabControl>
