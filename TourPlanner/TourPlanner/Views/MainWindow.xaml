@@ -88,7 +88,14 @@
 
         <Label Content="Logs:" Grid.Row="4" Grid.Column="4"/>
 
-        <DataGrid Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="LightCyan" >
+        <DataGrid x:Name="logGrid" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="LightCyan" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction 
+                        Command="{Binding SelectTourLog}"
+                        CommandParameter="{Binding ElementName=logGrid, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tour ID" Binding="{Binding TourID}"/>
                 <DataGridTextColumn Header="Tour Log ID" Binding="{Binding TourLogID}"/>
@@ -101,7 +108,7 @@
         </DataGrid>
         
         <Button Content="+" Grid.Row="4" Grid.Column="5" Margin="2,2,2,2"/>
-        <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2"/>
+        <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}"/>
         <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2"/>
 
         <Label Content="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
