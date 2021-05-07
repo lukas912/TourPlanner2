@@ -107,8 +107,8 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <Button Content="+" Grid.Row="4" Grid.Column="5" Margin="2,2,2,2"/>
-        <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}"/>
+        <Button Content="+" Grid.Row="4" Grid.Column="5" Margin="2,2,2,2" Command="{Binding AddTourLogCommand}"/>
+        <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLog}"/>
         <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2"/>
 
         <Label Content="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
