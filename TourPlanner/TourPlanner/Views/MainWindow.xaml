@@ -88,7 +88,7 @@
 
         <Label Content="Logs:" Grid.Row="4" Grid.Column="4"/>
 
-        <DataGrid Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding TourLogs}" AlternatingRowBackground="LightCyan" >
+        <DataGrid Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="LightCyan" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tour ID" Binding="{Binding TourID}"/>
                 <DataGridTextColumn Header="Tour Log ID" Binding="{Binding TourLogID}"/>
