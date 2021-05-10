@@ -43,7 +43,11 @@
             <MenuItem Header="File" Height="29">
                 <MenuItem Header="New" Command="{Binding AddTourCommand}"/>
                 <MenuItem Header="Open"/>
-                <MenuItem Header="Export Tour" Command="{Binding ExportTourCommand}"/>
+                <MenuItem Header="Export Tour">
+                    <MenuItem Header="JSON File" Command="{Binding ExportTourCommandJSON}"></MenuItem>
+                    <MenuItem Header="CSV File" Command="{Binding ExportTourCommandCSV}"></MenuItem>
+                    <MenuItem Header="Plain Text (.txt)" Command="{Binding ExportTourCommandTXT}"></MenuItem>
+                </MenuItem>
                 <Separator/>
                 <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>

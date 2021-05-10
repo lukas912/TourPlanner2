@@ -147,12 +147,16 @@ namespace TourPlanner.ViewModel
         public RelayCommand OpenGitRepo { get; }
         public RelayCommand CloseApplication { get; }
         public RelayCommand CopyTourCommand { get; }
-        public RelayCommand ExportTourCommand { get; }
+        public RelayCommand ExportTourCommandJSON { get; }
+        public RelayCommand ExportTourCommandCSV { get; }
+        public RelayCommand ExportTourCommandTXT { get; }
 
 
         public MainViewModel()
         {
             isEditableTour = false;
+
+            Tour_Export tour_export = new Tour_Export();
 
             //Commands
 
@@ -273,11 +277,26 @@ namespace TourPlanner.ViewModel
                 Tours.Add(t);
             });
 
-            //Export Tour
+            //Export Tour JSON
 
-            ExportTourCommand = new RelayCommand((_) =>
+            ExportTourCommandJSON = new RelayCommand((_) =>
             {
-                MessageBox.Show("s");
+                tour_export.JSON_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".json");
+
+            });
+
+            //Export Tour CSV
+
+            ExportTourCommandCSV = new RelayCommand((_) =>
+            {
+                tour_export.CSV_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".csv");
+            });
+
+            //Export Tour TXT
+
+            ExportTourCommandTXT = new RelayCommand((_) =>
+            {
+                tour_export.TXT_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".txt");
             });
 
 
