@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -25,13 +26,16 @@ namespace TourPlanner.Model
         //Import Tour from CSV
         public Tour CSV_Import(string path)
         {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = false,
+            };
             using (var reader = new StreamReader(path))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            using (var csv = new CsvReader(reader, config))
             {
                 var records = csv.GetRecords<Tour>();
-                return records.ElementAt(0);
+                return records.ElementAtOrDefault(0);
             }
-
         }
     }
 }

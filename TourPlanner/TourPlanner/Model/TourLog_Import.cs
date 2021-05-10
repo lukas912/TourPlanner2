@@ -16,11 +16,8 @@ namespace TourPlanner.Model
         //Import TourLog from JSON
         public List<TourLog> JSON_Import(string path)
         {
-            string json = JsonConvert.DeserializeObject<string>(path);
-
-            JArray a = JArray.Parse(json);
-
-            IList<TourLog> tour_logs = a.ToObject<IList<TourLog>>();
+            string json = System.IO.File.ReadAllText(path);
+            var tour_logs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TourLog>>(json);
 
             return tour_logs.ToList();
         }
