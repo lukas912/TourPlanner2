@@ -48,8 +48,8 @@
                 <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>
             <MenuItem Header="Edit" Height="29">
-                <MenuItem Header="Selected Tour" Command="{Binding EditTourCommand}"/>
-                <MenuItem Header="Selected Tour Logs" Command="{Binding EditTourLogCommand}"/>
+                <MenuItem Header="Copy Tour" Command="{Binding CopyTourCommand}"/>
+                <MenuItem Header="Delete Tour" Command="{Binding DeleteTourCommand}"/>
             </MenuItem>
             <MenuItem Header="Options" Height="29"/>
             <MenuItem Header="Help" Height="29">

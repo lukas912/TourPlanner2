@@ -130,6 +130,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand EditTourLogCommand { get; }
         public RelayCommand OpenGitRepo { get; }
         public RelayCommand CloseApplication { get; }
+        public RelayCommand CopyTourCommand { get; }
 
 
         public MainViewModel()
@@ -235,6 +236,14 @@ namespace TourPlanner.ViewModel
             CloseApplication = new RelayCommand((_) =>
             {
                 System.Windows.Application.Current.Shutdown();
+            });
+
+            //Copy Tour
+
+            CopyTourCommand = new RelayCommand((_) =>
+            {
+                Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image);
+                Tours.Add(t);
             });
 
             //Create ObservableCollectiions
