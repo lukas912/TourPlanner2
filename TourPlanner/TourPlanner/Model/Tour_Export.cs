@@ -31,5 +31,16 @@ namespace TourPlanner.Model
                 csv.WriteRecords(records);
             }
         }
+
+        //Export to txt file
+        public void TXT_Export(Tour tour, string path)
+        {
+            string text = "ID: " + tour.ID + "\n" +
+                "Title: " + tour.Title + "\n" +
+                "Description: " + tour.Description + "\n" +
+                "Image: " + tour.Image;
+
+            File.WriteAllTextAsync(path, text);
+        }
     }
 }
