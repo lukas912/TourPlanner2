@@ -34,7 +34,23 @@ namespace TourPlanner.ViewModel
 
         private string _search_input;
 
+        private bool _isEditableTour;
+
         //Properties
+
+        public bool isEditableTour
+        {
+            get
+            {
+                return _isEditableTour;
+            }
+
+            set
+            {
+                _isEditableTour = value;
+                OnPropertyChanged(nameof(isEditableTour));
+            }
+        }
         public string SearchInput
         {
             get
@@ -135,6 +151,8 @@ namespace TourPlanner.ViewModel
 
         public MainViewModel()
         {
+            isEditableTour = false;
+
             //Commands
 
             //Create new Tour
@@ -209,7 +227,15 @@ namespace TourPlanner.ViewModel
 
             EditTourCommand = new RelayCommand((_) =>
             {
-                MessageBox.Show("Not yet implemented");
+                if(isEditableTour == true)
+                {
+                    isEditableTour = false;
+                }
+
+                else
+                {
+                    isEditableTour = true;
+                }
             });
 
             //Edit Tour Log

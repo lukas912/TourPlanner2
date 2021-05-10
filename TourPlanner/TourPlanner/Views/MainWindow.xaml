@@ -116,14 +116,14 @@
         <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}"/>
         <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2" Command="{Binding EditTourLogCommand}"/>
 
-        <TextBox Height="20" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
+        <TextBox Height="20" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}"/>
         <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4">
             <TabItem Header="Route">
                 <Image Source="{Binding CurrentTour.Image}"></Image>
             </TabItem>
 
             <TabItem Header="Description">
-                <TextBox Text="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" />
+                <TextBox Text="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" IsEnabled="{Binding isEditableTour}"/>
             </TabItem>
 
         </TabControl>
