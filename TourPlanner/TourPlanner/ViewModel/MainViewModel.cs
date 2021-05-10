@@ -126,6 +126,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand SelectTour { get; }
         public RelayCommand SelectTourLog { get; }
         public RelayCommand SearchTourCommand { get; }
+        public RelayCommand EditTourCommand { get; }
 
 
         public MainViewModel()
@@ -189,6 +190,13 @@ namespace TourPlanner.ViewModel
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
 
+            });
+
+            //Edit Tour
+
+            EditTourCommand = new RelayCommand((_) =>
+            {
+                MessageBox.Show("Not yet implemented");
             });
 
             //Create ObservableCollectiions
