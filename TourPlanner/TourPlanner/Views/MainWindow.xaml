@@ -41,19 +41,24 @@
 
         <Menu VerticalAlignment="Center" Height="30" Grid.ColumnSpan="8">
             <MenuItem Header="File" Height="29">
-                <MenuItem Header="New"/>
+                <MenuItem Header="New" Command="{Binding AddTourCommand}"/>
                 <MenuItem Header="Open"/>
                 <MenuItem Header="Save"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>
-            <MenuItem Header="Edit" Height="29"/>
+            <MenuItem Header="Edit" Height="29">
+                <MenuItem Header="Selected Tour" Command="{Binding EditTourCommand}"/>
+                <MenuItem Header="Selected Tour Logs" Command="{Binding EditTourLogCommand}"/>
+            </MenuItem>
             <MenuItem Header="Options" Height="29"/>
-            <MenuItem Header="Help" Height="29"/>
+            <MenuItem Header="Help" Height="29">
+                <MenuItem Header="GitHub" Command="{Binding OpenGitRepo}"></MenuItem>
+            </MenuItem>
         </Menu>
 
         <TextBox Grid.Row="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding SearchInput}" Height="20"/>
-        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,5,5,5" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}"/>
+        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,5,5,5" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}" Height="20"/>
 
         <Label Content="Tours" Grid.Row="2" Grid.Column="0"/>
         <Button Content="+" Grid.Row="2" Grid.Column="1" Margin="2,2,2,2" Command="{Binding AddTourCommand}" />
@@ -114,7 +119,7 @@
         <TextBox Height="20" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
         <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4">
             <TabItem Header="Route">
-                <Label />
+                <Image Source="{Binding CurrentTour.Image}"></Image>
             </TabItem>
 
             <TabItem Header="Description">

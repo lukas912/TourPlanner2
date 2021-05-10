@@ -128,6 +128,8 @@ namespace TourPlanner.ViewModel
         public RelayCommand SearchTourCommand { get; }
         public RelayCommand EditTourCommand { get; }
         public RelayCommand EditTourLogCommand { get; }
+        public RelayCommand OpenGitRepo { get; }
+        public RelayCommand CloseApplication { get; }
 
 
         public MainViewModel()
@@ -137,7 +139,7 @@ namespace TourPlanner.ViewModel
             //Create new Tour
             AddTourCommand = new RelayCommand((_) =>
             {
-                Tours.Add(new Tour(100, "New Tour", "Tour Description"));
+                Tours.Add(new Tour(100, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
                 Debug.Write("Tour added");
             });
 
@@ -207,14 +209,33 @@ namespace TourPlanner.ViewModel
                 MessageBox.Show("Not yet implemented");
             });
 
+            //Open Github Repository
+
+            OpenGitRepo = new RelayCommand((_) =>
+            {
+                var ps = new ProcessStartInfo("https://github.com/lukas912/TourPlanner2")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
+            });
+
+            //Close Application
+
+            CloseApplication = new RelayCommand((_) =>
+            {
+                System.Windows.Application.Current.Shutdown();
+            });
+
             //Create ObservableCollectiions
             Tours = new ObservableCollection<Tour>();
             currentTourLogs = new ObservableCollection<TourLog>();
             TourLogs = new ObservableCollection<TourLog>();
 
             //add some tours
-            Tours.Add(new Tour(0, "Tour 1", "Description 1"));
-            Tours.Add(new Tour(1, "Tour 2", "Description 2"));
+            Tours.Add(new Tour(0, "Tour 1", "Description 1", "/Views/Images/thumbnail.jpg"));
+            Tours.Add(new Tour(1, "Tour 2", "Description 2", "/Views/Images/thumbnail2.jpg"));
 
             //add some tour logs
             TourLogs.Add(new TourLog(0, 0, "1.1.2020", "Awesome", 23.02f, "1:34", 2));
