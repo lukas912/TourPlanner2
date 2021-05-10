@@ -338,8 +338,7 @@ namespace TourPlanner.ViewModel
 
             ImportTourCommandJSON = new RelayCommand((_) =>
             {
-                Tour t = tour_import.JSON_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.json");
-                Tours.Add(t);
+                importTour("Json files(*.json) | *.json");
 
             });
 
@@ -347,16 +346,15 @@ namespace TourPlanner.ViewModel
 
             ImportTourCommandCSV = new RelayCommand((_) =>
             {
-                Tour t = tour_import.CSV_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.csv");
-                Tours.Add(t);
+                importTour("CSV file (*.csv)|*.csv");
             });
 
             //Import TourLogs from JSON
 
             ImportTourLogsCommandJSON = new RelayCommand((_) =>
             {
-                List<TourLog> tl = tour_log_import.JSON_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.json");
-                
+                importTourLogs("Json files(*.json) | *.json");
+
 
             });
 
@@ -364,8 +362,7 @@ namespace TourPlanner.ViewModel
 
             ImportTourLogsCommandCSV = new RelayCommand((_) =>
             {
-                Tour t = tour_import.CSV_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.csv");
-                Tours.Add(t);
+                importTourLogs("CSV file (*.csv)|*.csv");
             });
 
 
@@ -479,6 +476,56 @@ namespace TourPlanner.ViewModel
                     case "txt files (*.txt)|*.txt":
                         tour_log_export.TXT_Export(tour_logs.ToList(), saveFileDialog.FileName);
                         break;
+                }
+
+            }
+        }
+
+        //Import Tour
+
+        private void importTour(string type)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = type;
+            ofd.ShowDialog();
+            if(ofd.CheckPathExists == true)
+            {
+                if(type == "Json files(*.json) | *.json")
+                {
+                    Tour t = tour_import.JSON_Import(ofd.FileName);
+                    Tours.Add(t);
+                }
+
+                if(type == "CSV file (*.csv)|*.csv")
+                {
+                    Tour t = tour_import.CSV_Import(ofd.FileName);
+                    Tours.Add(t);
+                }
+
+            }
+        }
+
+        //Import TourLogs
+
+        private void importTourLogs(string type)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = type;
+            ofd.ShowDialog();
+            if (ofd.CheckPathExists == true)
+            {
+                if (type == "Json files(*.json) | *.json")
+                {
+                    List<TourLog> t = tour_log_import.JSON_Import(ofd.FileName);
+                    foreach (var item in t)
+                        TourLogs.Add(item);
+                }
+
+                if (type == "CSV file (*.csv)|*.csv")
+                {
+                    List<TourLog> t = tour_log_import.CSV_Import(ofd.FileName);
+                    foreach (var item in t)
+                        TourLogs.Add(item);
                 }
 
             }
