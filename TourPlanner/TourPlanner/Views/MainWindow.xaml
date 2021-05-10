@@ -53,6 +53,14 @@
                     <MenuItem Header="CSV File" Command="{Binding ExportTourLogsCommandCSV}"></MenuItem>
                     <MenuItem Header="Plain Text (.txt)" Command="{Binding ExportTourLogsCommandTXT}"></MenuItem>
                 </MenuItem>
+                <MenuItem Header="Import Tour">
+                    <MenuItem Header="JSON File" Command="{Binding ImportTourCommandJSON}"></MenuItem>
+                    <MenuItem Header="CSV File" Command="{Binding ImportTourCommandCSV}"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Import Tour Logs">
+                    <MenuItem Header="JSON File" Command="{Binding ImportTourLogsCommandJSON}"></MenuItem>
+                    <MenuItem Header="CSV File" Command="{Binding ImportTourLogsCommandCSV}"></MenuItem>
+                </MenuItem>
                 <Separator/>
                 <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>

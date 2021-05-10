@@ -14,6 +14,8 @@ using TourPlanner.Model;
 using TourPlanner.ViewModel.Commands;
 using System.IO.Compression;
 using System.Windows.Interactivity;
+using Microsoft.Win32;
+using System.IO;
 
 namespace TourPlanner.ViewModel
 {
@@ -153,14 +155,23 @@ namespace TourPlanner.ViewModel
         public RelayCommand ExportTourLogsCommandJSON { get; }
         public RelayCommand ExportTourLogsCommandCSV { get; }
         public RelayCommand ExportTourLogsCommandTXT { get; }
+        public RelayCommand ImportTourCommandJSON { get; }
+        public RelayCommand ImportTourCommandCSV { get; }
+        public RelayCommand ImportTourLogsCommandJSON { get; }
+        public RelayCommand ImportTourLogsCommandCSV { get; }
+
+        Tour_Export tour_export = new Tour_Export();
+        TourLog_Export tour_log_export = new TourLog_Export();
+
+        Tour_Import tour_import = new Tour_Import();
+        TourLog_Import tour_log_import = new TourLog_Import();
 
 
         public MainViewModel()
         {
             isEditableTour = false;
 
-            Tour_Export tour_export = new Tour_Export();
-            TourLog_Export tour_log_export = new TourLog_Export();
+
 
             //Commands
 
@@ -285,44 +296,79 @@ namespace TourPlanner.ViewModel
 
             ExportTourCommandJSON = new RelayCommand((_) =>
             {
-                tour_export.JSON_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".json");
-
+                saveTour(CurrentTour, "Json files (*.json)|*.json" );
             });
 
             //Export Tour CSV
 
             ExportTourCommandCSV = new RelayCommand((_) =>
             {
-                tour_export.CSV_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".csv");
+                saveTour(CurrentTour, "CSV file (*.csv)|*.csv");
             });
 
             //Export Tour TXT
 
             ExportTourCommandTXT = new RelayCommand((_) =>
             {
-                tour_export.TXT_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".txt");
+                saveTour(CurrentTour, "txt files (*.txt)|*.txt");
             });
 
             //Export Tour Logs JSON
 
             ExportTourLogsCommandJSON = new RelayCommand((_) =>
             {
-                tour_log_export.JSON_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.json");
+                saveTourLogs(currentTourLogs.ToList(), "Json files (*.json)|*.json");
             });
 
             //Export Tour Logs CSV
 
             ExportTourLogsCommandCSV = new RelayCommand((_) =>
             {
-                tour_log_export.CSV_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.csv");
+                saveTourLogs(currentTourLogs.ToList(), "CSV file (*.csv)|*.csv");
             });
 
             //Export Tour Logs TXT
 
             ExportTourLogsCommandTXT = new RelayCommand((_) =>
             {
-                tour_log_export.TXT_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.txt");
+                saveTourLogs(currentTourLogs.ToList(), "txt files (*.txt)|*.txt");
             });
+
+            //Import Tour from JSON
+
+            ImportTourCommandJSON = new RelayCommand((_) =>
+            {
+                Tour t = tour_import.JSON_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.json");
+                Tours.Add(t);
+
+            });
+
+            //Import Tour from CSV
+
+            ImportTourCommandCSV = new RelayCommand((_) =>
+            {
+                Tour t = tour_import.CSV_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.csv");
+                Tours.Add(t);
+            });
+
+            //Import TourLogs from JSON
+
+            ImportTourLogsCommandJSON = new RelayCommand((_) =>
+            {
+                List<TourLog> tl = tour_log_import.JSON_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.json");
+                
+
+            });
+
+            //Import TourLogs from CSV
+
+            ImportTourLogsCommandCSV = new RelayCommand((_) =>
+            {
+                Tour t = tour_import.CSV_Import(@"C:\Users\Lukas\Desktop\0_Tour 1.csv");
+                Tours.Add(t);
+            });
+
+
 
 
 
@@ -385,6 +431,57 @@ namespace TourPlanner.ViewModel
                 Debug.Write("Keinen Tour Log ausgwählt");
             }
 
+        }
+
+        //Save File (Tour)
+
+        private void saveTour(Tour tour, string type)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = type;
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                switch (type)
+                {
+                    case "Json files (*.json)|*.json":
+                        tour_export.JSON_Export(CurrentTour, saveFileDialog.FileName);
+                        break;
+                    case "CSV file (*.csv)|*.csv":
+                        tour_export.CSV_Export(CurrentTour, saveFileDialog.FileName);
+                        break;
+                    case "txt files (*.txt)|*.txt":
+                        tour_export.TXT_Export(CurrentTour, saveFileDialog.FileName);
+                        break;
+                }
+                
+            }
+        }
+
+
+        //Save File (TourLog)
+
+        private void saveTourLogs(List<TourLog> tour_logs, string type)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = type;
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                switch (type)
+                {
+                    case "Json files (*.json)|*.json":
+                        tour_log_export.JSON_Export(tour_logs.ToList(), saveFileDialog.FileName);
+                        break;
+                    case "CSV file (*.csv)|*.csv":
+                        tour_log_export.CSV_Export(tour_logs.ToList(), saveFileDialog.FileName);
+                        break;
+                    case "txt files (*.txt)|*.txt":
+                        tour_log_export.TXT_Export(tour_logs.ToList(), saveFileDialog.FileName);
+                        break;
+                }
+
+            }
         }
 
         //On Property Changed
