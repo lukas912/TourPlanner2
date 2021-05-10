@@ -12,14 +12,14 @@ namespace TourPlanner.Model
 {
     class TourLog_Export
     {
-        //Export Tour to JSON
+        //Export Tour Log to JSON
         public void JSON_Export(List<TourLog> tour_logs, string path)
         {
             // serialize JSON to a string and then write string to a file
             File.WriteAllText(path, JsonConvert.SerializeObject(tour_logs));
         }
 
-        //Export Tour to CSV
+        //Export Tour Log to CSV
         public void CSV_Export(List<TourLog> tour_logs, string path)
         {
             var records = tour_logs;
