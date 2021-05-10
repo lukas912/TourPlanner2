@@ -147,6 +147,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand OpenGitRepo { get; }
         public RelayCommand CloseApplication { get; }
         public RelayCommand CopyTourCommand { get; }
+        public RelayCommand ExportTourCommand { get; }
 
 
         public MainViewModel()
@@ -271,6 +272,16 @@ namespace TourPlanner.ViewModel
                 Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image);
                 Tours.Add(t);
             });
+
+            //Export Tour
+
+            ExportTourCommand = new RelayCommand((_) =>
+            {
+                MessageBox.Show("s");
+            });
+
+
+
 
             //Create ObservableCollectiions
             Tours = new ObservableCollection<Tour>();

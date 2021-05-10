@@ -43,7 +43,7 @@
             <MenuItem Header="File" Height="29">
                 <MenuItem Header="New" Command="{Binding AddTourCommand}"/>
                 <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
+                <MenuItem Header="Export Tour" Command="{Binding ExportTourCommand}"/>
                 <Separator/>
                 <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>
