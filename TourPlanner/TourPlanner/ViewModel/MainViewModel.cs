@@ -188,10 +188,19 @@ namespace TourPlanner.ViewModel
             //Search Tour
             SearchTourCommand = new RelayCommand((_) =>
             {
-                Debug.Print(SearchInput);
-                CurrentTour = Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault();
-                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
-                currentTourLogs = new ObservableCollection<TourLog>(cl);
+                if(Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault() != null)
+                {
+                    Debug.Print(SearchInput);
+                    CurrentTour = Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault();
+                    var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                    currentTourLogs = new ObservableCollection<TourLog>(cl);
+                }
+
+                else
+                {
+                    MessageBox.Show("Keine Ergebnisse gefunden :(");
+                }
+
 
             });
 
@@ -253,22 +262,42 @@ namespace TourPlanner.ViewModel
 
         }
 
+        //Methods
         private void selectTour(Tour tour)
         {
-            CurrentTour = Tours.Where(X => X.ID == tour.ID).FirstOrDefault();
-            var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
-            currentTourLogs = new ObservableCollection<TourLog>(cl);
-            Debug.Print($"Selected Tour {tour.ID}");
-            Debug.Print("ID: " + CurrentTour.ID);
+            if(tour != null)
+            {
+                CurrentTour = Tours.Where(X => X.ID == tour.ID).FirstOrDefault();
+                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                currentTourLogs = new ObservableCollection<TourLog>(cl);
+                Debug.Print($"Selected Tour {tour.ID}");
+                Debug.Print("ID: " + CurrentTour.ID);
+            }
+
+            else
+            {
+                Debug.Write("Keine Tour ausgewählt");
+            }
+
         }
 
         private void selectTourLog(TourLog tour_log)
         {
-            CurrentTourLog = TourLogs.Where(X => X.TourLogID == tour_log.TourLogID).FirstOrDefault();
-            Debug.Print($"Selected Tour Log {tour_log.TourLogID}");
-            Debug.Print("ID: " + CurrentTourLog.TourLogID);
+            if(tour_log != null)
+            {
+                CurrentTourLog = TourLogs.Where(X => X.TourLogID == tour_log.TourLogID).FirstOrDefault();
+                Debug.Print($"Selected Tour Log {tour_log.TourLogID}");
+                Debug.Print("ID: " + CurrentTourLog.TourLogID);
+            }
+
+            else
+            {
+                Debug.Write("Keinen Tour Log ausgwählt");
+            }
+
         }
 
+        //On Property Changed
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             Debug.Print($"propertyChanged \"{propertyName}\"");
