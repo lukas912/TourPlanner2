@@ -48,6 +48,11 @@
                     <MenuItem Header="CSV File" Command="{Binding ExportTourCommandCSV}"></MenuItem>
                     <MenuItem Header="Plain Text (.txt)" Command="{Binding ExportTourCommandTXT}"></MenuItem>
                 </MenuItem>
+                <MenuItem Header="Export Tour Logs">
+                    <MenuItem Header="JSON File" Command="{Binding ExportTourLogsCommandJSON}"></MenuItem>
+                    <MenuItem Header="CSV File" Command="{Binding ExportTourLogsCommandCSV}"></MenuItem>
+                    <MenuItem Header="Plain Text (.txt)" Command="{Binding ExportTourLogsCommandTXT}"></MenuItem>
+                </MenuItem>
                 <Separator/>
                 <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
             </MenuItem>

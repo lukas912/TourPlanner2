@@ -150,6 +150,9 @@ namespace TourPlanner.ViewModel
         public RelayCommand ExportTourCommandJSON { get; }
         public RelayCommand ExportTourCommandCSV { get; }
         public RelayCommand ExportTourCommandTXT { get; }
+        public RelayCommand ExportTourLogsCommandJSON { get; }
+        public RelayCommand ExportTourLogsCommandCSV { get; }
+        public RelayCommand ExportTourLogsCommandTXT { get; }
 
 
         public MainViewModel()
@@ -157,6 +160,7 @@ namespace TourPlanner.ViewModel
             isEditableTour = false;
 
             Tour_Export tour_export = new Tour_Export();
+            TourLog_Export tour_log_export = new TourLog_Export();
 
             //Commands
 
@@ -297,6 +301,27 @@ namespace TourPlanner.ViewModel
             ExportTourCommandTXT = new RelayCommand((_) =>
             {
                 tour_export.TXT_Export(CurrentTour, @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + ".txt");
+            });
+
+            //Export Tour Logs JSON
+
+            ExportTourLogsCommandJSON = new RelayCommand((_) =>
+            {
+                tour_log_export.JSON_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.json");
+            });
+
+            //Export Tour Logs CSV
+
+            ExportTourLogsCommandCSV = new RelayCommand((_) =>
+            {
+                tour_log_export.CSV_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.csv");
+            });
+
+            //Export Tour Logs TXT
+
+            ExportTourLogsCommandTXT = new RelayCommand((_) =>
+            {
+                tour_log_export.TXT_Export(currentTourLogs.ToList(), @"C:\Users\Lukas\Desktop\" + CurrentTour.ID + "_" + CurrentTour.Title + "_logs.txt");
             });
 
 
