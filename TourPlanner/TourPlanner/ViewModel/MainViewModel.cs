@@ -139,14 +139,14 @@ namespace TourPlanner.ViewModel
             //Create new Tour
             AddTourCommand = new RelayCommand((_) =>
             {
-                Tours.Add(new Tour(100, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
+                Tours.Add(new Tour(Tours.Count, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
                 Debug.Write("Tour added");
             });
 
             //Create new Tour Log
             AddTourLogCommand = new RelayCommand((_) =>
             {
-                TourLogs.Add(new TourLog(CurrentTour.ID, 10, "4.5.2017", "Super", 12.65f, "6:34", 2));
+                TourLogs.Add(new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2));
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
                 Debug.Write("TourLog added");
