@@ -109,7 +109,7 @@
         
         <Button Content="+" Grid.Row="4" Grid.Column="5" Margin="2,2,2,2" Command="{Binding AddTourLogCommand}"/>
         <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}"/>
-        <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2"/>
+        <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2" Command="{Binding EditTourLogCommand}"/>
 
         <TextBox Height="20" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"/>
         <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4">

@@ -127,6 +127,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand SelectTourLog { get; }
         public RelayCommand SearchTourCommand { get; }
         public RelayCommand EditTourCommand { get; }
+        public RelayCommand EditTourLogCommand { get; }
 
 
         public MainViewModel()
@@ -195,6 +196,13 @@ namespace TourPlanner.ViewModel
             //Edit Tour
 
             EditTourCommand = new RelayCommand((_) =>
+            {
+                MessageBox.Show("Not yet implemented");
+            });
+
+            //Edit Tour Log
+
+            EditTourLogCommand = new RelayCommand((_) =>
             {
                 MessageBox.Show("Not yet implemented");
             });
