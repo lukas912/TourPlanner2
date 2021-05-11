@@ -120,7 +120,7 @@
 
         <Label Content="Logs:" Grid.Row="4" Grid.Column="4"/>
 
-        <DataGrid x:Name="logGrid" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="DarkGray" >
+        <DataGrid x:Name="logGrid" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="DarkGray" AutoGenerateColumns="False">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction 
@@ -129,7 +129,13 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <DataGrid.Columns>
-
+                <DataGridTextColumn Header="Tour ID" Binding="{Binding TourID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tour Log ID" Binding="{Binding TourLogID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}"/>
+                <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
+                <DataGridTextColumn Header="Distance" Binding="{Binding Distance}"/>
+                <DataGridTextColumn Header="Total Time" Binding="{Binding TotalTime}"/>
+                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
             </DataGrid.Columns>
         </DataGrid>
 
