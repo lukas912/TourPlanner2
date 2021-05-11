@@ -68,6 +68,7 @@
                 <MenuItem Header="Copy Tour" Command="{Binding CopyTourCommand}"/>
                 <MenuItem Header="Delete Tour" Command="{Binding DeleteTourCommand}"/>
                 <MenuItem Header="Print Tour Report" Command="{Binding PdfExportCommand}"></MenuItem>
+                <MenuItem Header="Print Tour Summarize Report" Command="{Binding PdfExportCommand2}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Options" Height="29"/>
             <MenuItem Header="Help" Height="29">
