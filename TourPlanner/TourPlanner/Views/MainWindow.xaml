@@ -6,8 +6,16 @@
         xmlns:local="clr-namespace:TourPlanner"
         xmlns:ViewModel="clr-namespace:TourPlanner.ViewModel"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="TourPlanner" Height="450" Width="800" MinWidth="500" MinHeight="300">
+        Title="TourPlanner" Height="450" Width="800" MinWidth="500" MinHeight="300"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+         Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Window.DataContext>
         <ViewModel:MainViewModel />
@@ -76,8 +84,8 @@
             </MenuItem>
         </Menu>
 
-        <TextBox Grid.Row="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding SearchInput}" Height="20"/>
-        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,5,5,5" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}" Height="20"/>
+        <TextBox Grid.Row="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding SearchInput}" Height="25"/>
+        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,5,5,5" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}" Height="25"/>
 
         <Label Content="Tours" Grid.Row="2" Grid.Column="0"/>
         <Button Content="+" Grid.Row="2" Grid.Column="1" Margin="2,2,2,2" Command="{Binding AddTourCommand}" />
@@ -112,7 +120,7 @@
 
         <Label Content="Logs:" Grid.Row="4" Grid.Column="4"/>
 
-        <DataGrid x:Name="logGrid" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="LightCyan" >
+        <DataGrid x:Name="logGrid" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" ItemsSource="{Binding currentTourLogs}" AlternatingRowBackground="DarkGray" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction 
@@ -129,16 +137,17 @@
         <Button Content="-" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}"/>
         <Button Content="[]" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2" Command="{Binding EditTourLogCommand}"/>
 
-        <TextBox Height="20" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}"/>
-        <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4">
+        <TextBox Height="25" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}"/>
+        <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Style="{Binding MaterialDesignNavigatilRailTabControl}" Background="#FF303030">
             <TabItem Header="Route">
                 <Image Source="{Binding CurrentTour.Image}"></Image>
             </TabItem>
 
             <TabItem Header="Description">
-                <TextBox Text="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" IsEnabled="{Binding isEditableTour}"/>
+                <TextBox Text="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" IsEnabled="{Binding isEditableTour}" Foreground="White"/>
             </TabItem>
 
         </TabControl>
+
     </Grid>
 </Window>
