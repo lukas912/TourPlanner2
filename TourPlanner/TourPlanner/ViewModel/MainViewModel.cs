@@ -136,6 +136,10 @@ namespace TourPlanner.ViewModel
             }
         }
 
+        //Log4net
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //Commands
         public RelayCommand AddTourCommand { get; }
         public RelayCommand AddTourLogCommand {get;}
@@ -184,6 +188,10 @@ namespace TourPlanner.ViewModel
             {
                 Tours.Add(new Tour(Tours.Count, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
                 Debug.Write("Tour added");
+                log.Error("Tour added!");
+
+                log4net.Config.XmlConfigurator.Configure();
+                log.Info("Application is working");
             });
 
             //Create new Tour Log
