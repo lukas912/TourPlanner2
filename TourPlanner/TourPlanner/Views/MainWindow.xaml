@@ -42,7 +42,7 @@
         <Menu VerticalAlignment="Center" Height="30" Grid.ColumnSpan="8">
             <MenuItem Header="File" Height="29">
                 <MenuItem Header="New" Command="{Binding AddTourCommand}"/>
-                <MenuItem Header="Open"/>
+
                 <MenuItem Header="Export Tour">
                     <MenuItem Header="JSON File" Command="{Binding ExportTourCommandJSON}"></MenuItem>
                     <MenuItem Header="CSV File" Command="{Binding ExportTourCommandCSV}"></MenuItem>
@@ -67,6 +67,7 @@
             <MenuItem Header="Edit" Height="29">
                 <MenuItem Header="Copy Tour" Command="{Binding CopyTourCommand}"/>
                 <MenuItem Header="Delete Tour" Command="{Binding DeleteTourCommand}"/>
+                <MenuItem Header="Print Tour Report" Command="{Binding PdfExportCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Options" Height="29"/>
             <MenuItem Header="Help" Height="29">

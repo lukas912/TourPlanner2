@@ -159,12 +159,15 @@ namespace TourPlanner.ViewModel
         public RelayCommand ImportTourCommandCSV { get; }
         public RelayCommand ImportTourLogsCommandJSON { get; }
         public RelayCommand ImportTourLogsCommandCSV { get; }
+        public RelayCommand PdfExportCommand { get; }
 
         Tour_Export tour_export = new Tour_Export();
         TourLog_Export tour_log_export = new TourLog_Export();
 
         Tour_Import tour_import = new Tour_Import();
         TourLog_Import tour_log_import = new TourLog_Import();
+
+        PDF_Export pdf_export = new PDF_Export();
 
 
         public MainViewModel()
@@ -364,6 +367,21 @@ namespace TourPlanner.ViewModel
             {
                 importTourLogs("CSV file (*.csv)|*.csv");
             });
+
+            //Export Tour Report to Pdf
+
+            PdfExportCommand = new RelayCommand((_) =>
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF file (*.pdf)|*.pdf";
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    pdf_export.exportTourReport(CurrentTour, currentTourLogs.ToList(), saveFileDialog.FileName);
+                }
+            });
+
+
 
 
 
