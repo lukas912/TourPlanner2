@@ -178,8 +178,8 @@ namespace TourPlanner.ViewModel
         public MainViewModel()
         {
             isEditableTour = false;
-
-
+            log4net.Config.XmlConfigurator.Configure();
+            log.Info("Application started");
 
             //Commands
 
@@ -187,11 +187,7 @@ namespace TourPlanner.ViewModel
             AddTourCommand = new RelayCommand((_) =>
             {
                 Tours.Add(new Tour(Tours.Count, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
-                Debug.Write("Tour added");
-                log.Error("Tour added!");
-
-                log4net.Config.XmlConfigurator.Configure();
-                log.Info("Application is working");
+                log.Info("Tour added");
             });
 
             //Create new Tour Log
@@ -200,7 +196,7 @@ namespace TourPlanner.ViewModel
                 TourLogs.Add(new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2));
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
-                Debug.Write("TourLog added");
+                log.Info("Tour Log added");
 
             });
 
@@ -225,6 +221,7 @@ namespace TourPlanner.ViewModel
                 CurrentTour = Tours.First();
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
+                log.Info("Tour deleted");
             });
 
             //Delete Tour Log
@@ -233,7 +230,7 @@ namespace TourPlanner.ViewModel
                 TourLogs.Remove(TourLogs.Where(X => X.TourID == CurrentTour.ID && X.TourLogID == CurrentTourLog.TourLogID).Single());
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
-                Debug.Print("Tour Log deleted");
+                log.Info("Tour Log deleted");
             });
 
             //Search Tour
@@ -245,11 +242,13 @@ namespace TourPlanner.ViewModel
                     CurrentTour = Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault();
                     var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                     currentTourLogs = new ObservableCollection<TourLog>(cl);
+                    log.Info("Search function: Tour found");
                 }
 
                 else
                 {
                     MessageBox.Show("Keine Ergebnisse gefunden :(");
+                    log.Error("Search function: No Tour found");
                 }
 
 
@@ -287,6 +286,7 @@ namespace TourPlanner.ViewModel
                     Verb = "open"
                 };
                 Process.Start(ps);
+                log.Info("Opened GitHub");
             });
 
             //Close Application
@@ -302,6 +302,7 @@ namespace TourPlanner.ViewModel
             {
                 Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image);
                 Tours.Add(t);
+                log.Info("Tour copied");
             });
 
             //Export Tour JSON
@@ -309,6 +310,7 @@ namespace TourPlanner.ViewModel
             ExportTourCommandJSON = new RelayCommand((_) =>
             {
                 saveTour(CurrentTour, "Json files (*.json)|*.json" );
+                log.Info("Tour exported to JSON");
             });
 
             //Export Tour CSV
@@ -316,6 +318,7 @@ namespace TourPlanner.ViewModel
             ExportTourCommandCSV = new RelayCommand((_) =>
             {
                 saveTour(CurrentTour, "CSV file (*.csv)|*.csv");
+                log.Info("Tour exported to CSV");
             });
 
             //Export Tour TXT
@@ -323,6 +326,7 @@ namespace TourPlanner.ViewModel
             ExportTourCommandTXT = new RelayCommand((_) =>
             {
                 saveTour(CurrentTour, "txt files (*.txt)|*.txt");
+                log.Info("Tour exported to TXT");
             });
 
             //Export Tour Logs JSON
@@ -330,6 +334,7 @@ namespace TourPlanner.ViewModel
             ExportTourLogsCommandJSON = new RelayCommand((_) =>
             {
                 saveTourLogs(currentTourLogs.ToList(), "Json files (*.json)|*.json");
+                log.Info("Tour Logs exported to JSON");
             });
 
             //Export Tour Logs CSV
@@ -337,6 +342,7 @@ namespace TourPlanner.ViewModel
             ExportTourLogsCommandCSV = new RelayCommand((_) =>
             {
                 saveTourLogs(currentTourLogs.ToList(), "CSV file (*.csv)|*.csv");
+                log.Info("Tour Logs exported to CSV");
             });
 
             //Export Tour Logs TXT
@@ -344,6 +350,7 @@ namespace TourPlanner.ViewModel
             ExportTourLogsCommandTXT = new RelayCommand((_) =>
             {
                 saveTourLogs(currentTourLogs.ToList(), "txt files (*.txt)|*.txt");
+                log.Info("Tour Logs exported to TXT");
             });
 
             //Import Tour from JSON
@@ -351,6 +358,7 @@ namespace TourPlanner.ViewModel
             ImportTourCommandJSON = new RelayCommand((_) =>
             {
                 importTour("Json files(*.json) | *.json");
+                log.Info("Tour imported from JSON");
 
             });
 
@@ -359,6 +367,7 @@ namespace TourPlanner.ViewModel
             ImportTourCommandCSV = new RelayCommand((_) =>
             {
                 importTour("CSV file (*.csv)|*.csv");
+                log.Info("Tour imported from CSV");
             });
 
             //Import TourLogs from JSON
@@ -366,6 +375,7 @@ namespace TourPlanner.ViewModel
             ImportTourLogsCommandJSON = new RelayCommand((_) =>
             {
                 importTourLogs("Json files(*.json) | *.json");
+                log.Info("Tour Logs imported from JSON");
 
 
             });
@@ -375,6 +385,7 @@ namespace TourPlanner.ViewModel
             ImportTourLogsCommandCSV = new RelayCommand((_) =>
             {
                 importTourLogs("CSV file (*.csv)|*.csv");
+                log.Info("Tour Logs imported from CSV");
             });
 
             //Export Tour Report to Pdf
@@ -388,6 +399,8 @@ namespace TourPlanner.ViewModel
                 {
                     pdf_export.exportTourReport(CurrentTour, currentTourLogs.ToList(), saveFileDialog.FileName);
                 }
+
+                log.Info("Tour Report exported to PDF");
             });
 
             //Export Tour Summarize Report to Pdf
@@ -401,6 +414,8 @@ namespace TourPlanner.ViewModel
                 {
                     pdf_export.exportTourSummarizeReport(CurrentTour, currentTourLogs.ToList(), saveFileDialog.FileName);
                 }
+
+                log.Info("Tour Summarize Report exported to PDF");
             });
 
 
