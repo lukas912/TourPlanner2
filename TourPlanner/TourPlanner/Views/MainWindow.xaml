@@ -26,7 +26,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
@@ -154,7 +154,13 @@
                 <TextBox Text="{Binding CurrentTour.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" IsEnabled="{Binding isEditableTour}" Foreground="White" SelectionBrush="#FF00D665"/>
             </TabItem>
 
-            <TabItem Header="From/To">
+            <TabItem Header="Route Information">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="From: "></Label>
+                    <TextBox IsEnabled="{Binding isEditableTour}" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CurrentTour.From}" Foreground="White" SelectionBrush="#FF00D665"></TextBox>
+                    <Label Content="To: "></Label>
+                    <TextBox IsEnabled="{Binding isEditableTour}" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CurrentTour.To}" Foreground="White" SelectionBrush="#FF00D665"></TextBox>
+                </StackPanel>
 
             </TabItem>
 

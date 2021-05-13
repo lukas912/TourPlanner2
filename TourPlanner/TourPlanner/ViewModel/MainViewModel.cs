@@ -263,6 +263,7 @@ namespace TourPlanner.ViewModel
                 if(isEditableTour == true)
                 {
                     isEditableTour = false;
+                    updateTour();
                 }
 
                 else
@@ -449,6 +450,14 @@ namespace TourPlanner.ViewModel
             var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
             currentTourLogs = new ObservableCollection<TourLog>(cl);
 
+        }
+
+        private void updateTour()
+        {
+            //update route image
+            this.CurrentTour.Image = mapQuest.getRouteImage(CurrentTour.From, CurrentTour.To);
+
+            //update database
         }
 
         //Methods
