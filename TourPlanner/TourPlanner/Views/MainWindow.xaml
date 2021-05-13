@@ -147,7 +147,12 @@
         <TextBox Height="25" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}" SelectionBrush="#FF00D665"/>
         <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Style="{Binding MaterialDesignNavigatilRailTabControl}" Background="#FF303030">
             <TabItem Header="Route">
-                <Image Source="{Binding CurrentTour.Image}"></Image>
+                <Grid>
+                    <ScrollViewer>
+                        <Image Source="{Binding CurrentTour.Image}"></Image>
+                    </ScrollViewer>
+
+                </Grid>
             </TabItem>
 
             <TabItem Header="Description">
@@ -165,6 +170,8 @@
             </TabItem>
 
         </TabControl>
+
+        <GridSplitter Grid.Row="4" Grid.Column="4"  HorizontalAlignment="Stretch"></GridSplitter>
 
     </Grid>
 </Window>
