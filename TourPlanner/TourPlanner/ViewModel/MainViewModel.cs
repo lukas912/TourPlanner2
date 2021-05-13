@@ -174,6 +174,8 @@ namespace TourPlanner.ViewModel
 
         PDF_Export pdf_export = new PDF_Export();
 
+        MapQuest mapQuest = new MapQuest();
+
 
         public MainViewModel()
         {
@@ -186,7 +188,7 @@ namespace TourPlanner.ViewModel
             //Create new Tour
             AddTourCommand = new RelayCommand((_) =>
             {
-                Tours.Add(new Tour(Tours.Count, "New Tour", "Tour Description", "/Views/Images/thumbnail.jpg"));
+                Tours.Add(new Tour(Tours.Count, "New Tour", "Tour Description", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich"));
                 log.Info("Tour added");
             });
 
@@ -300,7 +302,7 @@ namespace TourPlanner.ViewModel
 
             CopyTourCommand = new RelayCommand((_) =>
             {
-                Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image);
+                Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image, CurrentTour.From, CurrentTour.To);
                 Tours.Add(t);
                 log.Info("Tour copied");
             });
@@ -430,8 +432,8 @@ namespace TourPlanner.ViewModel
             TourLogs = new ObservableCollection<TourLog>();
 
             //add some tours
-            Tours.Add(new Tour(0, "Tour 1", "Description 1", "/Views/Images/thumbnail.jpg"));
-            Tours.Add(new Tour(1, "Tour 2", "Description 2", "/Views/Images/thumbnail2.jpg"));
+            Tours.Add(new Tour(0, "Tour 1", "Description 1", mapQuest.getRouteImage("Berlin", "Munich"), "Berlin", "Munich"));
+            Tours.Add(new Tour(1, "Tour 2", "Description 2", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich"));
 
             //add some tour logs
             TourLogs.Add(new TourLog(0, 0, "1.1.2020", "Awesome", 23.02f, "1:34", 2));

@@ -40,7 +40,7 @@ namespace TourPlanner.ViewModel.Commands
         public void Execute(object parameter)
         {
             Debug.Print("command: add Tour");
-            Tour t = new Tour(99, "New Tour", "Tour Description", "/Views/thumbnail.jpg");
+            Tour t = new Tour(99, "New Tour", "Tour Description", "/Views/thumbnail.jpg", "Vienna", "Munich");
             _mainViewModel.Tours.Add(t);
             Debug.Print(_mainViewModel.Tours.Count.ToString());
             Debug.Print("command: add Tour Done");
