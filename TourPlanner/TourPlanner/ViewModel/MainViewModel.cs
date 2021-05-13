@@ -457,6 +457,8 @@ namespace TourPlanner.ViewModel
             //update route image
             this.CurrentTour.Image = mapQuest.getRouteImage(CurrentTour.From, CurrentTour.To);
 
+            CurrentTour = Tours.Where(X => X.ID == CurrentTour.ID).FirstOrDefault();
+
             //update database
         }
 

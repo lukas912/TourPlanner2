@@ -27,8 +27,6 @@ namespace TourPlanner.Model
 
             var response = client.Get(request);
 
-            Debug.Print(response.Content);
-
             var fileBytes = client.DownloadData(request);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + from + "_" + to + ".jpg";
             File.WriteAllBytes(path, fileBytes);
