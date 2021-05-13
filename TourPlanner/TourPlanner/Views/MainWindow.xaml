@@ -169,6 +169,12 @@
 
             </TabItem>
 
+            <TabItem Header="Weather">
+                <StackPanel>
+                    
+                </StackPanel>
+            </TabItem>
+
         </TabControl>
 
         <GridSplitter Grid.Row="4" Grid.Column="4"  HorizontalAlignment="Stretch"></GridSplitter>
