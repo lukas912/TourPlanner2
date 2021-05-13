@@ -38,7 +38,40 @@ namespace TourPlanner.ViewModel
 
         private bool _isEditableTour;
 
+        private WeatherData _wdFrom;
+
+        private WeatherData _wdTo;
+
         //Properties
+
+        public WeatherData WDFrom { 
+            get 
+            {
+                return _wdFrom;
+            } 
+
+            set
+            {
+                _wdFrom = value;
+                OnPropertyChanged(nameof(WDFrom));
+            }
+        
+        }
+
+        public WeatherData WDTo
+        {
+            get
+            {
+                return _wdTo;
+            }
+
+            set
+            {
+                _wdTo = value;
+                OnPropertyChanged(nameof(WDTo));
+            }
+
+        }
 
         public bool isEditableTour
         {
@@ -175,6 +208,7 @@ namespace TourPlanner.ViewModel
         PDF_Export pdf_export = new PDF_Export();
 
         MapQuest mapQuest = new MapQuest();
+        OpenWeather openWeather = new OpenWeather();
 
 
         public MainViewModel()
@@ -450,6 +484,11 @@ namespace TourPlanner.ViewModel
             var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
             currentTourLogs = new ObservableCollection<TourLog>(cl);
 
+            //load weather data
+
+            WDFrom = getWeatherData(CurrentTour.From);
+            WDTo = getWeatherData(CurrentTour.To);
+
         }
 
         private void updateTour()
@@ -472,6 +511,11 @@ namespace TourPlanner.ViewModel
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
                 Debug.Print($"Selected Tour {tour.ID}");
                 Debug.Print("ID: " + CurrentTour.ID);
+
+                //get Weather Data
+                WDFrom = getWeatherData(CurrentTour.From);
+                Debug.Write(WDFrom.Description);
+                WDTo = getWeatherData(CurrentTour.To);
             }
 
             else
@@ -596,6 +640,13 @@ namespace TourPlanner.ViewModel
                 }
 
             }
+        }
+
+        //Get Weather Data
+
+        private WeatherData getWeatherData(string city)
+        {
+            return openWeather.getWeatherData(city);
         }
 
         //On Property Changed

@@ -169,9 +169,23 @@
 
             </TabItem>
 
-            <TabItem Header="Weather">
+            <TabItem Header="Weather Start">
                 <StackPanel>
-                    
+                    <Label Content="{Binding WDFrom.City}"></Label>
+                    <Label Content="{Binding WDFrom.Description}"></Label>
+                    <Label Content="{Binding WDFrom.Temperature}"></Label>
+                    <Label Content="{Binding WDFrom.Humidity}"></Label>
+                    <Label Content="{Binding WDFrom.WindSpeed}"></Label>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Weather End">
+                <StackPanel>
+                    <Label Content="{Binding WDTo.City}"></Label>
+                    <Label Content="{Binding WDTo.Description}"></Label>
+                    <Label Content="{Binding WDTo.Temperature}"></Label>
+                    <Label Content="{Binding WDTo.Humidity}"></Label>
+                    <Label Content="{Binding WDTo.WindSpeed}"></Label>
                 </StackPanel>
             </TabItem>
 

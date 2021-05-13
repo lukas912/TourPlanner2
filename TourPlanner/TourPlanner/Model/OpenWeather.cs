@@ -7,6 +7,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace TourPlanner.Model
 {
@@ -17,7 +18,8 @@ namespace TourPlanner.Model
 
         public WeatherData getWeatherData(string city)
         {
-            string url = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + KEY;
+            Debug.Write("HERE");
+            string url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + KEY;
 
             var client = new RestClient(url);
 
@@ -25,10 +27,12 @@ namespace TourPlanner.Model
 
             var response = client.Get(request);
 
+            Debug.Write(response.Content);
+
             JObject obj = JObject.Parse(response.Content);
 
 
-            WeatherData wd = new WeatherData(city, (string)obj["weather"]["description"], (string)obj["main"]["temp"], (string)obj["main"]["humidity"], (string)obj["wind"]["speed"]);
+            WeatherData wd = new WeatherData(city, (string)obj["weather"][0]["description"], (string)obj["main"]["temp"], (string)obj["main"]["humidity"], (string)obj["wind"]["speed"]);
 
             return wd;
         }
