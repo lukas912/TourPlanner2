@@ -42,6 +42,7 @@ namespace TourPlanner.ViewModel
 
         private WeatherData _wdTo;
 
+
         //Properties
 
         public WeatherData WDFrom { 
@@ -199,6 +200,7 @@ namespace TourPlanner.ViewModel
         public RelayCommand PdfExportCommand { get; }
         public RelayCommand PdfExportCommand2 { get; }
 
+
         Tour_Export tour_export = new Tour_Export();
         TourLog_Export tour_log_export = new TourLog_Export();
 
@@ -209,6 +211,8 @@ namespace TourPlanner.ViewModel
 
         MapQuest mapQuest = new MapQuest();
         OpenWeather openWeather = new OpenWeather();
+
+        Data data = new Data();
 
 
         public MainViewModel()
@@ -466,16 +470,27 @@ namespace TourPlanner.ViewModel
             currentTourLogs = new ObservableCollection<TourLog>();
             TourLogs = new ObservableCollection<TourLog>();
 
+
             //add some tours
-            Tours.Add(new Tour(0, "Tour 1", "Description 1", mapQuest.getRouteImage("Berlin", "Munich"), "Berlin", "Munich"));
-            Tours.Add(new Tour(1, "Tour 2", "Description 2", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich"));
+            //Tours.Add(new Tour(0, "Tour 1", "Description 1", mapQuest.getRouteImage("Berlin", "Munich"), "Berlin", "Munich"));
+            //Tours.Add(new Tour(1, "Tour 2", "Description 2", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich"));
 
             //add some tour logs
-            TourLogs.Add(new TourLog(0, 0, "1.1.2020", "Awesome", 23.02f, "1:34", 2));
-            TourLogs.Add(new TourLog(0, 1, "21.1.2019", "Great", 13.42f, "1:14", 1));
+            //TourLogs.Add(new TourLog(0, 0, "1.1.2020", "Awesome", 23.02f, "1:34", 2));
+            //TourLogs.Add(new TourLog(0, 1, "21.1.2019", "Great", 13.42f, "1:14", 1));
 
-            TourLogs.Add(new TourLog(1, 0, "1.2.2013", "Fine", 23.02f, "1:24", 2));
-            TourLogs.Add(new TourLog(1, 1, "21.1.2016", "Amazing", 13.42f, "1:19", 2));
+            //TourLogs.Add(new TourLog(1, 0, "1.2.2013", "Fine", 23.02f, "1:24", 2));
+            //TourLogs.Add(new TourLog(1, 1, "21.1.2016", "Amazing", 13.42f, "1:19", 2));
+
+            initApplication();
+
+        }
+
+        private void initApplication()
+        {
+            //Load Tours
+
+            this.Tours = new ObservableCollection<Tour>(data.getTours());
 
             //assign current tour
             CurrentTour = Tours.First();
@@ -488,7 +503,6 @@ namespace TourPlanner.ViewModel
 
             WDFrom = getWeatherData(CurrentTour.From);
             WDTo = getWeatherData(CurrentTour.To);
-
         }
 
         private void updateTour()
