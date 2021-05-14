@@ -488,9 +488,8 @@ namespace TourPlanner.ViewModel
 
         private void initApplication()
         {
-            //Load Tours
 
-            this.Tours = new ObservableCollection<Tour>(data.getTours());
+            loadTourData();
 
             //assign current tour
             CurrentTour = Tours.First();
@@ -503,6 +502,17 @@ namespace TourPlanner.ViewModel
 
             WDFrom = getWeatherData(CurrentTour.From);
             WDTo = getWeatherData(CurrentTour.To);
+        }
+
+        private void loadTourData()
+        {
+            //Load Tours
+
+            this.Tours = new ObservableCollection<Tour>(data.getTours());
+
+            //Load Tour Logs
+
+            this.TourLogs = new ObservableCollection<TourLog>(data.getTourLogs());
         }
 
         private void updateTour()

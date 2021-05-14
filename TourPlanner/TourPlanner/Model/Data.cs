@@ -15,5 +15,9 @@ namespace TourPlanner.Model
         {
             return dbc.getTours();
         }
+        public List<TourLog> getTourLogs()
+        {
+            return dbc.getTourLogs();
+        }
     }
 }

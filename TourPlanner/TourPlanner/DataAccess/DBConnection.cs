@@ -13,6 +13,7 @@ namespace TourPlanner.DataAccess
     {
 
         string CS;
+        MapQuest mq = new MapQuest();
 
         private string getConnectionString()
         {
@@ -43,7 +44,7 @@ namespace TourPlanner.DataAccess
                             reader.GetInt32(reader.GetOrdinal("tour_id")),
                             reader.GetString(reader.GetOrdinal("tour_name")),
                             reader.GetString(reader.GetOrdinal("tour_description")),
-                            "img",
+                            mq.getRouteImage(reader.GetString(reader.GetOrdinal("from")), reader.GetString(reader.GetOrdinal("to"))),
                             reader.GetString(reader.GetOrdinal("from")),
                             reader.GetString(reader.GetOrdinal("to"))
 
