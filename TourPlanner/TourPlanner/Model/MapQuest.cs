@@ -20,17 +20,22 @@ namespace TourPlanner.Model
 
         public string getRouteImage(string from, string to)
         {
-            string url = BASE_URL + from + "&end=" + to + "&size=600,400@2x&key=" + KEY;
-            var client = new RestClient(url);
-
-            var request = new RestRequest();
-
-            var response = client.Get(request);
-
-            var fileBytes = client.DownloadData(request);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + from + "_" + to + ".jpg";
-            File.WriteAllBytes(path, fileBytes);
 
+            if(!File.Exists(path))
+            {
+                string url = BASE_URL + from + "&end=" + to + "&size=600,400@2x&key=" + KEY;
+                var client = new RestClient(url);
+
+                var request = new RestRequest();
+
+                var response = client.Get(request);
+
+                var fileBytes = client.DownloadData(request);
+
+                File.WriteAllBytes(path, fileBytes);
+
+            }
 
             return path;
         }
