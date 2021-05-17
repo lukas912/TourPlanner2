@@ -159,7 +159,32 @@ namespace TourPlanner.DataAccess
 
         public bool editTour(Tour tour)
         {
-            throw new NotImplementedException();
+            CS = getConnectionString();
+
+            // Connect to a PostgreSQL database
+            using var con = new NpgsqlConnection(CS);
+            con.Open();
+
+            try
+            {
+                using (var cmd = new NpgsqlCommand("UPDATE \"Tour\" SET tour_name = @title, tour_description = @desc, \"from\" = @from, \"to\" = @to WHERE tour_id = @id;", con))
+                {
+                    cmd.Parameters.AddWithValue("id", tour.ID);
+                    cmd.Parameters.AddWithValue("title", tour.Title);
+                    cmd.Parameters.AddWithValue("desc", tour.Description);
+                    cmd.Parameters.AddWithValue("from", tour.From);
+                    cmd.Parameters.AddWithValue("to", tour.To);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
         }
 
         public bool editTourLogs(List<TourLog> tourlogs)

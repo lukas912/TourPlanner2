@@ -542,6 +542,7 @@ namespace TourPlanner.ViewModel
             CurrentTour = Tours.Where(X => X.ID == CurrentTour.ID).FirstOrDefault();
 
             //update database
+            data.editTour(CurrentTour);
         }
 
         //Methods

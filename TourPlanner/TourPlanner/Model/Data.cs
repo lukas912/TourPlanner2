@@ -39,5 +39,10 @@ namespace TourPlanner.Model
         {
             return dbc.deleteTourLog(tourlog);
         }
+
+        public bool editTour(Tour tour)
+        {
+            return dbc.editTour(tour);
+        }
     }
 }
