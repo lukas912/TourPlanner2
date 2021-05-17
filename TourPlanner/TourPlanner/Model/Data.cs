@@ -29,5 +29,15 @@ namespace TourPlanner.Model
         {
             return dbc.addTourLog(tourlog);
         }
+
+        public bool deleteTour(int id)
+        {
+            return dbc.deleteTour(id);
+        }
+
+        public bool deleteTourLog(TourLog tourlog)
+        {
+            return dbc.deleteTourLog(tourlog);
+        }
     }
 }

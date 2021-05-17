@@ -162,21 +162,62 @@ namespace TourPlanner.DataAccess
             throw new NotImplementedException();
         }
 
-        public bool editTourLog(TourLog tourlog)
+        public bool editTourLogs(List<TourLog> tourlogs)
         {
             throw new NotImplementedException();
         }
 
         //DELETEs
 
-        public bool deleteTour(Tour tour)
+        public bool deleteTour(int id)
         {
-            throw new NotImplementedException();
+            CS = getConnectionString();
+
+            // Connect to a PostgreSQL database
+            using var con = new NpgsqlConnection(CS);
+            con.Open();
+
+            try
+            {
+                using (var cmd = new NpgsqlCommand("DELETE FROM \"Tour\" WHERE tour_id = @id", con))
+                {
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
         }
 
         public bool deleteTourLog(TourLog tourlog)
         {
-            throw new NotImplementedException();
+            CS = getConnectionString();
+
+            // Connect to a PostgreSQL database
+            using var con = new NpgsqlConnection(CS);
+            con.Open();
+
+            try
+            {
+                using (var cmd = new NpgsqlCommand("DELETE FROM \"Tour_Log\" WHERE tour_id = @id AND tour_log_id = @logid", con))
+                {
+                    cmd.Parameters.AddWithValue("id", tourlog.TourID);
+                    cmd.Parameters.AddWithValue("logid", tourlog.TourLogID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
         }
 
 

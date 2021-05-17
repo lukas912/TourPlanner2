@@ -267,15 +267,25 @@ namespace TourPlanner.ViewModel
                 var t = Tours.Where(X => X.ID != CurrentTour.ID);
                 Tours = new ObservableCollection<Tour>(t);
                 Debug.Write("Tour deleted");
+
+                //DB
+                data.deleteTour(CurrentTour.ID);
+
+
                 CurrentTour = Tours.First();
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
                 log.Info("Tour deleted");
+
+
             });
 
             //Delete Tour Log
             DeleteTourLogCommand = new RelayCommand((_) =>
             {
+                //DB
+                data.deleteTourLog(CurrentTourLog);
+
                 TourLogs.Remove(TourLogs.Where(X => X.TourID == CurrentTour.ID && X.TourLogID == CurrentTourLog.TourLogID).Single());
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);
