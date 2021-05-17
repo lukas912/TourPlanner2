@@ -187,9 +187,36 @@ namespace TourPlanner.DataAccess
             }
         }
 
-        public bool editTourLogs(List<TourLog> tourlogs)
+        public bool editTourLog(TourLog tourlog)
         {
-            throw new NotImplementedException();
+            CS = getConnectionString();
+
+            // Connect to a PostgreSQL database
+            using var con = new NpgsqlConnection(CS);
+            con.Open();
+
+            try
+            {
+                using (var cmd = new NpgsqlCommand("UPDATE \"Tour_Log\" SET timestamp = @ts, report = @rp, distance = @ds, total_time = @tt, rating = @rt WHERE tour_id = @tid AND tour_log_id = @tlid;", con))
+                {
+                    cmd.Parameters.AddWithValue("tid", tourlog.TourID);
+                    cmd.Parameters.AddWithValue("tlid", tourlog.TourLogID);
+                    cmd.Parameters.AddWithValue("ts", tourlog.Timestamp);
+                    cmd.Parameters.AddWithValue("rp", tourlog.Report);
+                    cmd.Parameters.AddWithValue("ds", tourlog.Distance);
+                    cmd.Parameters.AddWithValue("tt", tourlog.TotalTime);
+                    cmd.Parameters.AddWithValue("rt", tourlog.Rating);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
         }
 
         //DELETEs

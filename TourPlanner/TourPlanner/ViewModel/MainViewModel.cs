@@ -333,7 +333,8 @@ namespace TourPlanner.ViewModel
 
             EditTourLogCommand = new RelayCommand((_) =>
             {
-                MessageBox.Show("Not yet implemented");
+                data.editTourLog(CurrentTourLog);
+                Debug.WriteLine("EDIT TOUR LOG"+ CurrentTourLog.Report);
             });
 
             //Open Github Repository
