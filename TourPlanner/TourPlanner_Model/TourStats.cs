@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Model
 {
-    class TourStats
+    public class TourStats
     {
         public int ID { get; set; }
         public float AVG_Distance { get; set; }

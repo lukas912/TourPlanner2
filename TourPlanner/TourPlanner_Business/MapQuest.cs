@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace TourPlanner.Model
 {
-    class MapQuest
+    public class MapQuest
     {
         public string KEY = "Iyuj6MgMp3OZEU59aDLg5Si0oyXgC2l0";
         public string BASE_URL = "https://www.mapquestapi.com/staticmap/v5/map?start=";

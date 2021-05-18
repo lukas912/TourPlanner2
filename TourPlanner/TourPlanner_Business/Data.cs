@@ -7,7 +7,7 @@ using TourPlanner.DataAccess;
 
 namespace TourPlanner.Model
 {
-    class Data
+    public class Data
     {
         DBConnection dbc = new DBConnection();
         

@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace TourPlanner.Model
 {
-    class TourLog_Export
+    public class TourLog_Export
     {
         //Export Tour Log to JSON
         public void JSON_Export(List<TourLog> tour_logs, string path)

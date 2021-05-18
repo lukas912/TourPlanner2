@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace TourPlanner.Model
 {
-    class OpenWeather
+    public class OpenWeather
     {
         public string KEY = "49720b74d46a9b89d62da24abbce9400";
         public string BASE_URL = "https://www.mapquestapi.com/staticmap/v5/map?start=";

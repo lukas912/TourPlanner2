@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourPlanner.Model;
 using Npgsql;
 using System.Configuration;
+using TourPlanner.Model;
 
 namespace TourPlanner.DataAccess
 {
-    class DBConnection
+    public class DBConnection
     {
 
         string CS;
-        MapQuest mq = new MapQuest();
 
         private string getConnectionString()
         {
@@ -44,7 +43,7 @@ namespace TourPlanner.DataAccess
                             reader.GetInt32(reader.GetOrdinal("tour_id")),
                             reader.GetString(reader.GetOrdinal("tour_name")),
                             reader.GetString(reader.GetOrdinal("tour_description")),
-                            mq.getRouteImage(reader.GetString(reader.GetOrdinal("from")), reader.GetString(reader.GetOrdinal("to"))),
+                            "image",
                             reader.GetString(reader.GetOrdinal("from")),
                             reader.GetString(reader.GetOrdinal("to"))
 

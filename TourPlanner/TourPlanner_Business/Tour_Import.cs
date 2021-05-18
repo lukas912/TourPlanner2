@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Model
 {
-    class Tour_Import
+    public class Tour_Import
     {
         //Import Tour from JSON
         public Tour JSON_Import(string path)

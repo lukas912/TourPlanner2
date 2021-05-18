@@ -11,7 +11,7 @@ using System.Drawing;
 
 namespace TourPlanner.Model
 {
-    class PDF_Export
+    public class PDF_Export
     {
         public void exportTourReport(Tour tour, List<TourLog> tour_logs, string path)
         {

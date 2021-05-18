@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Model
 {
-    class WeatherData
+    public class WeatherData
     {
         public string City { get; set; }
         public string Description { get; set; }

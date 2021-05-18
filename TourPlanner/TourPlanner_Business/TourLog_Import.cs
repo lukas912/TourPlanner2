@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Model
 {
-    class TourLog_Import
+    public class TourLog_Import
     {
         //Import TourLog from JSON
         public List<TourLog> JSON_Import(string path)

@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner", "TourPlanner\TourPlanner.csproj", "{2F70FC95-9B37-462D-A65F-475F408B122C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner", "TourPlanner\TourPlanner.csproj", "{2F70FC95-9B37-462D-A65F-475F408B122C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Model", "TourPlanner_Model\TourPlanner_Model.csproj", "{EF543F95-485F-4CE0-877A-535C62FFA388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_DataAccess", "TourPlanner_DataAccess\TourPlanner_DataAccess.csproj", "{478697D2-AF2B-4027-A696-A9831113523C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Business", "TourPlanner_Business\TourPlanner_Business.csproj", "{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{2F70FC95-9B37-462D-A65F-475F408B122C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F70FC95-9B37-462D-A65F-475F408B122C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F70FC95-9B37-462D-A65F-475F408B122C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF543F95-485F-4CE0-877A-535C62FFA388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF543F95-485F-4CE0-877A-535C62FFA388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF543F95-485F-4CE0-877A-535C62FFA388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF543F95-485F-4CE0-877A-535C62FFA388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478697D2-AF2B-4027-A696-A9831113523C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478697D2-AF2B-4027-A696-A9831113523C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478697D2-AF2B-4027-A696-A9831113523C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478697D2-AF2B-4027-A696-A9831113523C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
