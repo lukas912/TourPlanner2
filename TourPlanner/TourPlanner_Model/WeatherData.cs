@@ -18,9 +18,9 @@ namespace TourPlanner_Model
         {
             this.City = city;
             this.Description = desc;
-            this.Temperature = Convert.ToString(Convert.ToDouble(temp) - 273.15) + " °C";
+            this.Temperature = temp + " °C";
             this.Humidity = humid + " %";
-            this.WindSpeed = windspd + " km/h";
+            this.WindSpeed = windspd + " m/s";
             
         }
     }

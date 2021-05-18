@@ -15,12 +15,11 @@ namespace TourPlanner_Business
     public class OpenWeather
     {
         public string KEY = "49720b74d46a9b89d62da24abbce9400";
-        public string BASE_URL = "https://www.mapquestapi.com/staticmap/v5/map?start=";
+        public string BASE_URL = "https://www.mapquestapi.com/staticmap/v5/map?units=metric&start=";
 
         public WeatherData getWeatherData(string city)
         {
-            Debug.Write("HERE");
-            string url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + KEY;
+            string url = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + city + "&appid=" + KEY;
 
             var client = new RestClient(url);
 
