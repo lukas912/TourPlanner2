@@ -8,8 +8,9 @@ using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System.Drawing;
+using TourPlanner_Model;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class PDF_Export
     {

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourPlanner.DataAccess;
+using TourPlanner_DataAccess;
+using TourPlanner_Model;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class Data
     {

@@ -10,7 +10,7 @@ using System.IO;
 using System.Net;
 using System.Drawing;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class MapQuest
     {

@@ -8,8 +8,9 @@ using RestSharp.Authenticators;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using TourPlanner_Model;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class OpenWeather
     {

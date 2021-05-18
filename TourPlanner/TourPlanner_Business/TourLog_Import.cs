@@ -8,8 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlanner_Model;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class TourLog_Import
     {

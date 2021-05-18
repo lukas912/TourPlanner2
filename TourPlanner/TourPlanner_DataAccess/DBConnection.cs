@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 using System.Configuration;
-using TourPlanner.Model;
+using TourPlanner_Model;
 
-namespace TourPlanner.DataAccess
+namespace TourPlanner_DataAccess
 {
     public class DBConnection
     {

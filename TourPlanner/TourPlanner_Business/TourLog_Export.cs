@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CsvHelper;
 using System.Globalization;
+using TourPlanner_Model;
 
-namespace TourPlanner.Model
+namespace TourPlanner_Business
 {
     public class TourLog_Export
     {

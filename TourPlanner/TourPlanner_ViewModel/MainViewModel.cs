@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TourPlanner.Model;
 using System.IO.Compression;
 using System.Windows.Interactivity;
 using Microsoft.Win32;
 using System.IO;
+using TourPlanner_Model;
+using TourPlanner_Business;
 
 namespace TourPlanner_ViewModel
 {
