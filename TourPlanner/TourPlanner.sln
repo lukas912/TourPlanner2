@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_DataAccess", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Business", "TourPlanner_Business\TourPlanner_Business.csproj", "{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_ViewModel", "TourPlanner_ViewModel\TourPlanner_ViewModel.csproj", "{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

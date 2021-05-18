@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
-        xmlns:ViewModel="clr-namespace:TourPlanner.ViewModel"
+        xmlns:ViewModel="clr-namespace:TourPlanner_ViewModel;assembly=TourPlanner_ViewModel"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
@@ -18,7 +18,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}" Icon="/Views/icon.jpg">
 
     <Window.DataContext>
-        <ViewModel:MainViewModel />
+        <ViewModel:MainViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
