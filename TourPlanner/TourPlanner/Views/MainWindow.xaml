@@ -41,10 +41,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="40*" MinHeight="30" MaxHeight="40"/>
-            <RowDefinition Height="35*" MinHeight="25" MaxHeight="35"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="35*" MinHeight="25" MaxHeight="35"/>
-            <RowDefinition Height="110*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="259*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="249*"/>
         </Grid.RowDefinitions>
 
         <Menu VerticalAlignment="Center" Height="30" Grid.ColumnSpan="8">
@@ -84,22 +84,22 @@
             </MenuItem>
         </Menu>
 
-        <TextBox Grid.Row="1" Margin="5,5,5,5" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding SearchInput}" Height="25"/>
-        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,5,5,5" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}" Height="25"/>
+        <TextBox Grid.Row="1" Margin="5,8,5,7" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding SearchInput}" Height="25"/>
+        <Button Grid.Row="1" Content="Search" Grid.Column="5" Margin="5,8,5,7" Grid.ColumnSpan="3" Command="{Binding SearchTourCommand}" Height="25"/>
 
-        <Label Content="Tours" Grid.Row="2" Grid.Column="0"/>
-        <Button Content="{materialDesign:PackIcon Add}" Grid.Row="2" Grid.Column="1" Margin="2,2,2,2" Command="{Binding AddTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
-        <Button Content="{materialDesign:PackIcon Delete}" Grid.Row="2" Grid.Column="2" Margin="2,2,2,2" Command="{Binding DeleteTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
-        <Button Content="{materialDesign:PackIcon Edit}" Grid.Row="2" Grid.Column="3" Margin="2,2,2,2" Command="{Binding EditTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Label Content="Tours" Grid.Row="1" Grid.Column="0" Margin="0,40,0,0" Grid.RowSpan="2"/>
+        <Button Content="{materialDesign:PackIcon Add}" Grid.Row="2" Grid.Column="1" Margin="5,3,5,2" Command="{Binding AddTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Button Content="{materialDesign:PackIcon Delete}" Grid.Row="2" Grid.Column="2" Margin="5,3,5,2" Command="{Binding DeleteTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Button Content="{materialDesign:PackIcon Edit}" Grid.Row="2" Grid.Column="3" Margin="5,3,5,2" Command="{Binding EditTourCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
 
         <ListView 
-            Margin="2"
+            Margin="2,2,2,2"
             Name="ListView1"
             ItemsSource="{Binding Tours}"
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="4"
-            Grid.RowSpan="3"
+            Grid.RowSpan="4"
             Style="{DynamicResource MaterialDesignListView}">
 
             <i:Interaction.Triggers>
@@ -140,12 +140,12 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="{materialDesign:PackIcon Add}" Grid.Row="4" Grid.Column="5" Margin="2,2,2,2" Command="{Binding AddTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
-        <Button Content="{materialDesign:PackIcon Delete}" Grid.Row="4" Grid.Column="6" Margin="2,2,2,2" Command="{Binding DeleteTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
-        <Button Content="{materialDesign:PackIcon Edit}" Grid.Row="4" Grid.Column="7" Margin="2,2,2,2" Command="{Binding EditTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Button Content="{materialDesign:PackIcon Add}" Grid.Row="4" Grid.Column="5" Margin="5,3,5,2" Command="{Binding AddTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Button Content="{materialDesign:PackIcon Delete}" Grid.Row="4" Grid.Column="6" Margin="5,3,5,2" Command="{Binding DeleteTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
+        <Button Content="{materialDesign:PackIcon Edit}" Grid.Row="4" Grid.Column="7" Margin="5,3,5,2" Command="{Binding EditTourLogCommand}" Style="{DynamicResource MaterialDesignFloatingActionButton}" Width="30" Height="30"/>
 
-        <TextBox Height="25" Margin="5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}" SelectionBrush="#FF00D665"/>
-        <TabControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Style="{Binding MaterialDesignNavigatilRailTabControl}" Background="#FF303030">
+        <TextBox Height="25" Margin="5,5,5,5" Text="{Binding CurrentTour.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" IsEnabled="{Binding isEditableTour}" SelectionBrush="#FF00D665"/>
+        <TabControl Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" Background="#FF303030" Margin="0,35,0,0" Grid.RowSpan="2">
             <TabItem Header="Route">
                 <Grid>
                     <ScrollViewer>
@@ -191,7 +191,7 @@
 
         </TabControl>
 
-        <GridSplitter Grid.Row="4" Grid.Column="4"  HorizontalAlignment="Stretch"></GridSplitter>
+        <GridSplitter Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"></GridSplitter>
 
     </Grid>
 </Window>

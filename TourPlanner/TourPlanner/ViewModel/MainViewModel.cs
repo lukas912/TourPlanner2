@@ -506,6 +506,47 @@ namespace TourPlanner.ViewModel
 
         }
 
+        private int genTourID()
+        {
+            int counter = 0;
+
+            if(!IDexists(counter))
+            {
+                return counter;
+            }
+
+            else
+            {
+                for(int i = counter; i <= Tours.Count; i++)
+                {
+                    if(!IDexists(i))
+                    {
+                        return i;
+                    }
+                }
+
+                return Tours.Count;
+            }
+        }
+
+        private bool IDexists(int id)
+        {
+            foreach(Tour t in Tours)
+            {
+                if(id == t.ID)
+                {
+                    return true;
+                }
+
+                else if (id != t.ID)
+                {
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
         private void initApplication()
         {
 
