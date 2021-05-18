@@ -10,10 +10,20 @@ namespace TourPlanner.Model
     public class Data
     {
         DBConnection dbc = new DBConnection();
+        MapQuest mq = new MapQuest();
         
         public List<Tour> getTours()
         {
-            return dbc.getTours();
+            List<Tour> tours = dbc.getTours();
+
+            foreach(Tour t in tours)
+            {
+                t.Image = mq.getRouteImage(t.From, t.To);
+            }
+
+            return tours;
+
+
         }
         public List<TourLog> getTourLogs()
         {
