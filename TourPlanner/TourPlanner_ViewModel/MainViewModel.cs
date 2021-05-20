@@ -615,8 +615,8 @@ namespace TourPlanner_ViewModel
         {
             if(tour_log != null)
             {
-                CurrentTourLog = TourLogs.Where(X => X.TourLogID == tour_log.TourLogID).FirstOrDefault();
-                Debug.Print($"Selected Tour Log {tour_log.TourLogID}");
+                CurrentTourLog = TourLogs.Where(X => X.TourLogID == tour_log.TourLogID && X.TourID == CurrentTour.ID).FirstOrDefault();
+                Debug.Print($"Selected Tour Log {tour_log.TourLogID} {tour_log.TourID}");
                 Debug.Print("ID: " + CurrentTourLog.TourLogID);
             }
 

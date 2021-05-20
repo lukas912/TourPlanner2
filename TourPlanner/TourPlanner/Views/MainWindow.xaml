@@ -40,7 +40,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="40*" MinHeight="30" MaxHeight="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="259*"/>
             <RowDefinition Height="35"/>
