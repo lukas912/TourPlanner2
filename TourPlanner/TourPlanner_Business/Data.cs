@@ -53,7 +53,7 @@ namespace TourPlanner_Business
 
         public bool editTour(Tour tour)
         {
-            return dbc.editTour(tour);
+            return dbc.editTour(new Tour(tour.ID, tour.Title, tour.Description, "img", tour.From, tour.To, mq.getTotalDistance(tour.From, tour.To)));
         }
 
         public bool editTourLog(TourLog tourlog)

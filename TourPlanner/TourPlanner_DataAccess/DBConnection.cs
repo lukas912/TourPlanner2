@@ -167,13 +167,14 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("UPDATE \"Tour\" SET tour_name = @title, tour_description = @desc, \"from\" = @from, \"to\" = @to WHERE tour_id = @id;", con))
+                using (var cmd = new NpgsqlCommand("UPDATE \"Tour\" SET tour_name = @title, tour_description = @desc, \"from\" = @from, \"to\" = @to, total_distance = @td WHERE tour_id = @id;", con))
                 {
                     cmd.Parameters.AddWithValue("id", tour.ID);
                     cmd.Parameters.AddWithValue("title", tour.Title);
                     cmd.Parameters.AddWithValue("desc", tour.Description);
                     cmd.Parameters.AddWithValue("from", tour.From);
                     cmd.Parameters.AddWithValue("to", tour.To);
+                    cmd.Parameters.AddWithValue("td", tour.TotalDistance);
 
                     cmd.ExecuteNonQuery();
                 }
