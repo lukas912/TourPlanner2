@@ -165,6 +165,8 @@
                     <TextBox IsEnabled="{Binding isEditableTour}" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CurrentTour.From}" Foreground="White" SelectionBrush="#FF00D665"></TextBox>
                     <Label Content="To: "></Label>
                     <TextBox IsEnabled="{Binding isEditableTour}" Width="200" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CurrentTour.To}" Foreground="White" SelectionBrush="#FF00D665"></TextBox>
+                    <Label Content="Total Distance: "></Label>
+                    <Label Content="{Binding CurrentTour.TotalDistance}"></Label>
                 </StackPanel>
 
             </TabItem>
