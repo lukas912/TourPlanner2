@@ -137,6 +137,11 @@
                 <DataGridTextColumn Header="Distance" Binding="{Binding Distance}"/>
                 <DataGridTextColumn Header="Total Time" Binding="{Binding TotalTime}"/>
                 <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                <DataGridTextColumn Header="Weather" Binding="{Binding Weather}"/>
+                <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}"/>
+                <DataGridTextColumn Header="Vehicle" Binding="{Binding Vehicle}"/>
+                <DataGridTextColumn Header="Recommendation" Binding="{Binding Recommendation}"/>
+                <DataGridTextColumn Header="Participants" Binding="{Binding Participants}"/>
             </DataGrid.Columns>
         </DataGrid>
 

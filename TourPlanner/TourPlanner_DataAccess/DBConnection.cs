@@ -80,7 +80,12 @@ namespace TourPlanner_DataAccess
                             reader.GetString(reader.GetOrdinal("report")),
                             reader.GetFloat(reader.GetOrdinal("distance")),
                             reader.GetString(reader.GetOrdinal("total_time")),
-                            reader.GetInt32(reader.GetOrdinal("rating"))
+                            reader.GetInt32(reader.GetOrdinal("rating")),
+                            reader.GetString(reader.GetOrdinal("weather")),
+                            reader.GetInt32(reader.GetOrdinal("difficulty")),
+                            reader.GetString(reader.GetOrdinal("vehicle")),
+                            reader.GetBoolean(reader.GetOrdinal("recommendation")),
+                            reader.GetInt32(reader.GetOrdinal("participants"))
                             ));
                     }
                 }

@@ -238,7 +238,7 @@ namespace TourPlanner_ViewModel
             //Create new Tour Log
             AddTourLogCommand = new RelayCommand((_) =>
             {
-                TourLog tl = new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2);
+                TourLog tl = new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2, "Sunny", 8, "Bike", true, 5);
                 TourLogs.Add(tl);
                 var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
                 currentTourLogs = new ObservableCollection<TourLog>(cl);

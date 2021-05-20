@@ -15,8 +15,13 @@ namespace TourPlanner_Model
         public float Distance { get; set; }
         public string TotalTime { get; set; }
         public int Rating { get; set; }
+        public string Weather { get; set; }
+        public int Difficulty { get; set; }
+        public string Vehicle { get; set; }
+        public bool Recommendation { get; set; }
+        public int Participants { get; set; }
 
-        public TourLog(int tid, int logid, string timestamp, string report, float distance, string total_time, int rating)
+        public TourLog(int tid, int logid, string timestamp, string report, float distance, string total_time, int rating, string weather, int difficulty, string vehicle, bool recommendation, int participants)
         {
             this.TourID = tid;
             this.TourLogID = logid;
@@ -25,6 +30,11 @@ namespace TourPlanner_Model
             this.Distance = distance;
             this.TotalTime = total_time;
             this.Rating = rating;
+            this.Weather = weather;
+            this.Difficulty = difficulty;
+            this.Vehicle = vehicle;
+            this.Recommendation = recommendation;
+            this.Participants = participants;
         }
     }
 }
