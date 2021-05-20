@@ -139,7 +139,7 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour_Log\" (tour_id, tour_log_id, timestamp, report, distance, total_time, rating) VALUES (@tid, @tlid, @ts, @rp, @ds, @tt, @rt)", con))
+                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour_Log\" (tour_id, tour_log_id, timestamp, report, distance, total_time, rating, weather, difficulty, vehicle, recommendation, participants) VALUES (@tid, @tlid, @ts, @rp, @ds, @tt, @rt, @wt, @df, @vh, @rc, @pa)", con))
                 {
                     cmd.Parameters.AddWithValue("tid", tourlog.TourID);
                     cmd.Parameters.AddWithValue("tlid", tourlog.TourLogID);
@@ -148,6 +148,11 @@ namespace TourPlanner_DataAccess
                     cmd.Parameters.AddWithValue("ds", tourlog.Distance);
                     cmd.Parameters.AddWithValue("tt", tourlog.TotalTime);
                     cmd.Parameters.AddWithValue("rt", tourlog.Rating);
+                    cmd.Parameters.AddWithValue("wt", tourlog.Weather);
+                    cmd.Parameters.AddWithValue("df", tourlog.Difficulty);
+                    cmd.Parameters.AddWithValue("vh", tourlog.Vehicle);
+                    cmd.Parameters.AddWithValue("rc", tourlog.Recommendation);
+                    cmd.Parameters.AddWithValue("pa", tourlog.Participants);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -203,7 +208,7 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("UPDATE \"Tour_Log\" SET timestamp = @ts, report = @rp, distance = @ds, total_time = @tt, rating = @rt WHERE tour_id = @tid AND tour_log_id = @tlid;", con))
+                using (var cmd = new NpgsqlCommand("UPDATE \"Tour_Log\" SET timestamp = @ts, report = @rp, distance = @ds, total_time = @tt, rating = @rt, weather = @wt, difficulty = @df, vehicle = @vh, recommendation = @rc, participants = @pa WHERE tour_id = @tid AND tour_log_id = @tlid;", con))
                 {
                     cmd.Parameters.AddWithValue("tid", tourlog.TourID);
                     cmd.Parameters.AddWithValue("tlid", tourlog.TourLogID);
@@ -212,6 +217,11 @@ namespace TourPlanner_DataAccess
                     cmd.Parameters.AddWithValue("ds", tourlog.Distance);
                     cmd.Parameters.AddWithValue("tt", tourlog.TotalTime);
                     cmd.Parameters.AddWithValue("rt", tourlog.Rating);
+                    cmd.Parameters.AddWithValue("wt", tourlog.Weather);
+                    cmd.Parameters.AddWithValue("df", tourlog.Difficulty);
+                    cmd.Parameters.AddWithValue("vh", tourlog.Vehicle);
+                    cmd.Parameters.AddWithValue("rc", tourlog.Recommendation);
+                    cmd.Parameters.AddWithValue("pa", tourlog.Participants);
 
                     cmd.ExecuteNonQuery();
                 }
