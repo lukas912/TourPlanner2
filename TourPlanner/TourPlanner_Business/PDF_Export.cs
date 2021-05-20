@@ -54,6 +54,10 @@ namespace TourPlanner_Business
 
             gfx.DrawString("Description: " + tour.Description, head_font, XBrushes.Black,
             new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Total Distance: " + tour.TotalDistance, head_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
             y += 40;
 
             gfx.DrawString("Tour Logs: ", head_font, XBrushes.Black,
@@ -89,9 +93,24 @@ namespace TourPlanner_Business
 
             }
 
+
+            // Create an empty page
+            PdfPage page2 = document.AddPage();
+
+            // Get an XGraphics object for drawing
+            XGraphics gfx2 = XGraphics.FromPdfPage(page2);
+
+            DrawImage(gfx2, tour.Image, 50, 50);
+
             document.Save(path);
 
 
+        }
+
+        void DrawImage(XGraphics gfx, string jpegSamplePath, int x, int y)
+        {
+            XImage image = XImage.FromFile(jpegSamplePath);
+            gfx.DrawImage(image, x, y, 450, 300);
         }
 
         public void exportTourSummarizeReport(Tour tour, List<TourLog> tour_logs, string path)
