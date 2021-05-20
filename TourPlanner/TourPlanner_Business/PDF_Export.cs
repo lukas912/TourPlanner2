@@ -153,6 +153,14 @@ namespace TourPlanner_Business
 
             gfx.DrawString("Average Rating: " + ts.AVG_Rating.ToString(), log_font, XBrushes.Black,
             new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Average Difficulty: " + ts.AVG_Difficulty.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Average Participants: " + ts.AVG_Participants.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
             y += 40;
 
             gfx.DrawString("Minumum Distance: " + ts.MIN_Distance.ToString(), log_font, XBrushes.Black,
@@ -164,6 +172,14 @@ namespace TourPlanner_Business
             y += 20;
 
             gfx.DrawString("Worst Rating: " + ts.MAX_Rating.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Minimum Difficulty: " + ts.MIN_Difficulty.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Minimum Participants: " + ts.MIN_Participants.ToString(), log_font, XBrushes.Black,
             new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
             y += 40;
 
@@ -177,7 +193,18 @@ namespace TourPlanner_Business
 
             gfx.DrawString("Best Rating: " + ts.MIN_Rating.ToString(), log_font, XBrushes.Black,
             new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Maximum Difficulty: " + ts.MAX_Difficulty.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+            y += 20;
+
+            gfx.DrawString("Maximum Participants: " + ts.MAX_Participants.ToString(), log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
             y += 40;
+
+            gfx.DrawString("Reccomendation Rate: " + (ts.RecommendationRate * 100).ToString() + "%", log_font, XBrushes.Black,
+            new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
 
             document.Save(path);
 
@@ -188,19 +215,30 @@ namespace TourPlanner_Business
         {
             float ar = 0;
             float ds = 0;
+            float avg_df = 0;
+            float avg_pa = 0;
 
             float minRating = -1;
             float minDistance = -1;
+            int minParticipants = -1;
+            int minDifficulty = -1;
 
             float maxRating = -1;
             float maxDistance = -1;
+            int maxParticipants = -1;
+            int maxDifficulty = -1;
+
+            int rc_true = 0;
+            int rc_false = 0;
 
 
 
-            foreach(TourLog tl in tour_logs)
+            foreach (TourLog tl in tour_logs)
             {
                 ar += tl.Rating;
                 ds += tl.Distance;
+                avg_df += tl.Difficulty;
+                avg_pa += tl.Participants;
 
                 if(minRating == -1 || minRating > tl.Rating)
                 {
@@ -212,6 +250,16 @@ namespace TourPlanner_Business
                     minDistance = tl.Distance;
                 }
 
+                if (minDifficulty == -1 || minDifficulty > tl.Difficulty)
+                {
+                    minDifficulty = tl.Difficulty;
+                }
+
+                if (minParticipants == -1 || minParticipants > tl.Participants)
+                {
+                    minParticipants = tl.Participants;
+                }
+
                 if (maxRating == -1 || maxRating < tl.Rating)
                 {
                     maxRating = tl.Rating;
@@ -221,12 +269,34 @@ namespace TourPlanner_Business
                 {
                     maxDistance = tl.Distance;
                 }
+
+                if (maxDifficulty == -1 || maxDifficulty < tl.Difficulty)
+                {
+                    maxDifficulty = tl.Difficulty;
+                }
+
+                if (maxParticipants == -1 || maxParticipants < tl.Participants)
+                {
+                    maxParticipants = tl.Participants;
+                }
+
+                if(tl.Recommendation == true)
+                {
+                    rc_true++;
+                }
+
+                if (tl.Recommendation == false)
+                {
+                    rc_false++;
+                }
             }
 
             ar = ar / tour_logs.Count;
             ds = ds / tour_logs.Count;
+            avg_df = avg_df / tour_logs.Count;
+            avg_pa = avg_pa / tour_logs.Count;
 
-            TourStats ts = new TourStats(tour.ID, ds, "Not implemented", ar, minDistance, "Not implemented", minRating, maxDistance, "Not implemented", maxRating);
+            TourStats ts = new TourStats(tour.ID, ds, "Not implemented", ar, minDistance, "Not implemented", minRating, maxDistance, "Not implemented", maxRating, minDifficulty, maxDifficulty, avg_df, minParticipants, maxParticipants, avg_pa, rc_true, rc_false);
             return ts;
         }
     }
