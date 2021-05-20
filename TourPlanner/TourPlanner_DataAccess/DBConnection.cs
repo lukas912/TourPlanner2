@@ -45,8 +45,8 @@ namespace TourPlanner_DataAccess
                             reader.GetString(reader.GetOrdinal("tour_description")),
                             "image",
                             reader.GetString(reader.GetOrdinal("from")),
-                            reader.GetString(reader.GetOrdinal("to"))
-
+                            reader.GetString(reader.GetOrdinal("to")),
+                            reader.GetFloat(reader.GetOrdinal("total_distance"))
                             ));
                     }
                 }
@@ -102,13 +102,14 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour\" (tour_id, tour_name, tour_description, \"from\", \"to\") VALUES (@id, @name, @desc, @from, @to)", con))
+                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour\" (tour_id, tour_name, tour_description, \"from\", \"to\", total_distance) VALUES (@id, @name, @desc, @from, @to, @td)", con))
                 {
                     cmd.Parameters.AddWithValue("id", tour.ID);
                     cmd.Parameters.AddWithValue("name", tour.Title);
                     cmd.Parameters.AddWithValue("desc", tour.Description);
                     cmd.Parameters.AddWithValue("from", tour.From);
                     cmd.Parameters.AddWithValue("to", tour.To);
+                    cmd.Parameters.AddWithValue("td", tour.TotalDistance);
                     cmd.ExecuteNonQuery();
                 }
 

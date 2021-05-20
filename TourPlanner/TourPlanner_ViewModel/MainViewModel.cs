@@ -226,7 +226,7 @@ namespace TourPlanner_ViewModel
             //Create new Tour
             AddTourCommand = new RelayCommand((_) =>
             {
-                Tour t = new Tour(Tours.Count, "New Tour", "Tour Description", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich");
+                Tour t = new Tour(Tours.Count, "New Tour", "Tour Description", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich", 0);
                 Tours.Add(t);
                 log.Info("Tour added");
 
@@ -361,7 +361,7 @@ namespace TourPlanner_ViewModel
 
             CopyTourCommand = new RelayCommand((_) =>
             {
-                Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image, CurrentTour.From, CurrentTour.To);
+                Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image, CurrentTour.From, CurrentTour.To, 0);
                 Tours.Add(t);
                 log.Info("Tour copied");
             });

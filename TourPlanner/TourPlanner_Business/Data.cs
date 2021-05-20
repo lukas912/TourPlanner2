@@ -33,7 +33,7 @@ namespace TourPlanner_Business
 
         public bool addTour(Tour tour)
         {
-            return dbc.addTour(tour);
+            return dbc.addTour(new Tour(tour.ID, tour.Title, tour.Description, "img", tour.From, tour.To, mq.getTotalDistance(tour.From, tour.To)));
         }
 
         public bool addTourLog(TourLog tourlog)

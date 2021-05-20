@@ -9,6 +9,8 @@ using RestSharp.Authenticators;
 using System.IO;
 using System.Net;
 using System.Drawing;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TourPlanner_Business
 {
@@ -38,6 +40,21 @@ namespace TourPlanner_Business
             }
 
             return path;
+        }
+
+        public float getTotalDistance(string from, string to)
+        {
+            string url = "http://www.mapquestapi.com/directions/v2/route?key=" + KEY + "&from=" + from + "&to=" + to;
+            var client = new RestClient(url);
+
+            var request = new RestRequest();
+
+            var response = client.Get(request);
+
+            JObject obj = JObject.Parse(response.Content);
+
+            return (float)obj["route"]["distance"];
+
         }
 
 

@@ -14,8 +14,9 @@ namespace TourPlanner_Model
         public string Image { get; set; }
         public string From { get; set; }
         public string To { get; set; }
+        public float TotalDistance { get; set; }
 
-        public Tour(int id, string t, string d, string i, string from, string to)
+        public Tour(int id, string t, string d, string i, string from, string to, float td)
         {
             this.ID = id;
             this.Title = t;
@@ -23,6 +24,7 @@ namespace TourPlanner_Model
             this.Image = i;
             this.From = from;
             this.To = to;
+            this.TotalDistance = td;
         }
     }
 }
