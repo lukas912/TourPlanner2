@@ -295,22 +295,9 @@ namespace TourPlanner_ViewModel
             //Search Tour
             SearchTourCommand = new RelayCommand((_) =>
             {
-                if(Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault() != null)
-                {
-                    Debug.Print(SearchInput);
-                    CurrentTour = Tours.Where(X => X.Title.Contains(SearchInput)).FirstOrDefault();
-                    var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
-                    currentTourLogs = new ObservableCollection<TourLog>(cl);
-                    log.Info("Search function: Tour found");
-                }
-
-                else
-                {
-                    MessageBox.Show("Keine Ergebnisse gefunden :(");
-                    log.Error("Search function: No Tour found");
-                }
-
-
+                Tours = new ObservableCollection<Tour>(TourSearch.searchTours(Tours.ToList(), SearchInput));
+                currentTourLogs = new ObservableCollection<TourLog>(TourSearch.searchTourLogs(TourLogs.ToList(), SearchInput));
+                log.Info("Search Tour and Tour Logs");
             });
 
             //Edit Tour
