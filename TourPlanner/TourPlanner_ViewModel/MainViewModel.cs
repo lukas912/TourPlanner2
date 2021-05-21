@@ -227,27 +227,14 @@ namespace TourPlanner_ViewModel
             AddTourCommand = new RelayCommand((_) =>
             {
                 Tour t = new Tour(Tours.Count, "New Tour", "Tour Description", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich", 0);
-
-                //Database
-                data.addTour(t);
-                log.Info("Tour added");
-
-                //UI
-                loadTourData();
+                addTour(t);
             });
 
             //Create new Tour Log
             AddTourLogCommand = new RelayCommand((_) =>
             {
                 TourLog tl = new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2, "Sunny", 8, "Bike", true, 5);
-
-                //DB
-                data.addTourLog(tl);
-                loadTourData();
-
-                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
-                currentTourLogs = new ObservableCollection<TourLog>(cl);
-                log.Info("Tour Log added");
+                addTourLog(tl);
 
             });
 
@@ -351,7 +338,7 @@ namespace TourPlanner_ViewModel
             CopyTourCommand = new RelayCommand((_) =>
             {
                 Tour t = new Tour(Tours.Count, CurrentTour.Title, CurrentTour.Description, CurrentTour.Image, CurrentTour.From, CurrentTour.To, 0);
-                Tours.Add(t);
+                addTour(t);
                 log.Info("Tour copied");
             });
 
@@ -493,6 +480,28 @@ namespace TourPlanner_ViewModel
 
             initApplication();
 
+        }
+
+        private void addTourLog(TourLog tl)
+        {
+            //DB
+            data.addTourLog(tl);
+            loadTourData();
+
+            var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+            currentTourLogs = new ObservableCollection<TourLog>(cl);
+            log.Info("Tour Log added");
+        }
+
+        private void addTour(Tour t)
+        {
+
+            //Database
+            data.addTour(t);
+            log.Info("Tour added");
+
+            //UI
+            loadTourData();
         }
 
         private int genTourID()
@@ -678,14 +687,12 @@ namespace TourPlanner_ViewModel
             {
                 if(type == "Json files(*.json) | *.json")
                 {
-                    Tour t = tour_import.JSON_Import(ofd.FileName);
-                    Tours.Add(t);
+                    addTour(tour_import.JSON_Import(ofd.FileName));
                 }
 
                 if(type == "CSV file (*.csv)|*.csv")
                 {
-                    Tour t = tour_import.CSV_Import(ofd.FileName);
-                    Tours.Add(t);
+                    addTour(tour_import.CSV_Import(ofd.FileName));
                 }
 
             }
@@ -704,14 +711,14 @@ namespace TourPlanner_ViewModel
                 {
                     List<TourLog> t = tour_log_import.JSON_Import(ofd.FileName);
                     foreach (var item in t)
-                        TourLogs.Add(item);
+                        addTourLog(item);
                 }
 
                 if (type == "CSV file (*.csv)|*.csv")
                 {
                     List<TourLog> t = tour_log_import.CSV_Import(ofd.FileName);
                     foreach (var item in t)
-                        TourLogs.Add(item);
+                        addTourLog(item);
                 }
 
             }
