@@ -227,25 +227,27 @@ namespace TourPlanner_ViewModel
             AddTourCommand = new RelayCommand((_) =>
             {
                 Tour t = new Tour(Tours.Count, "New Tour", "Tour Description", mapQuest.getRouteImage("Vienna", "Munich"), "Vienna", "Munich", 0);
-                Tours.Add(t);
-                log.Info("Tour added");
 
                 //Database
-
                 data.addTour(t);
+                log.Info("Tour added");
+
+                //UI
+                loadTourData();
             });
 
             //Create new Tour Log
             AddTourLogCommand = new RelayCommand((_) =>
             {
                 TourLog tl = new TourLog(CurrentTour.ID, currentTourLogs.Count, "4.5.2017", "Super", 12.65f, "6:34", 2, "Sunny", 8, "Bike", true, 5);
-                TourLogs.Add(tl);
-                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
-                currentTourLogs = new ObservableCollection<TourLog>(cl);
-                log.Info("Tour Log added");
 
                 //DB
                 data.addTourLog(tl);
+                loadTourData();
+
+                var cl = TourLogs.Where(X => X.TourID == CurrentTour.ID);
+                currentTourLogs = new ObservableCollection<TourLog>(cl);
+                log.Info("Tour Log added");
 
             });
 

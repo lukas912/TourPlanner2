@@ -13,6 +13,7 @@ namespace TourPlanner_DataAccess
     {
 
         string CS;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private string getConnectionString()
         {
@@ -107,9 +108,8 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour\" (tour_id, tour_name, tour_description, \"from\", \"to\", total_distance) VALUES (@id, @name, @desc, @from, @to, @td)", con))
+                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour\" (tour_name, tour_description, \"from\", \"to\", total_distance) VALUES (@name, @desc, @from, @to, @td)", con))
                 {
-                    cmd.Parameters.AddWithValue("id", tour.ID);
                     cmd.Parameters.AddWithValue("name", tour.Title);
                     cmd.Parameters.AddWithValue("desc", tour.Description);
                     cmd.Parameters.AddWithValue("from", tour.From);
@@ -121,8 +121,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
 
@@ -139,10 +140,9 @@ namespace TourPlanner_DataAccess
 
             try
             {
-                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour_Log\" (tour_id, tour_log_id, timestamp, report, distance, total_time, rating, weather, difficulty, vehicle, recommendation, participants) VALUES (@tid, @tlid, @ts, @rp, @ds, @tt, @rt, @wt, @df, @vh, @rc, @pa)", con))
+                using (var cmd = new NpgsqlCommand("INSERT INTO \"Tour_Log\" (tour_id, timestamp, report, distance, total_time, rating, weather, difficulty, vehicle, recommendation, participants) VALUES (@tid, @ts, @rp, @ds, @tt, @rt, @wt, @df, @vh, @rc, @pa)", con))
                 {
                     cmd.Parameters.AddWithValue("tid", tourlog.TourID);
-                    cmd.Parameters.AddWithValue("tlid", tourlog.TourLogID);
                     cmd.Parameters.AddWithValue("ts", tourlog.Timestamp);
                     cmd.Parameters.AddWithValue("rp", tourlog.Report);
                     cmd.Parameters.AddWithValue("ds", tourlog.Distance);
@@ -159,8 +159,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
         }
@@ -287,6 +288,7 @@ namespace TourPlanner_DataAccess
                 return false;
             }
         }
+
 
 
     }
