@@ -590,8 +590,14 @@ namespace TourPlanner_ViewModel
 
             CurrentTour = Tours.Where(X => X.ID == CurrentTour.ID).FirstOrDefault();
 
+            //Update Weather Data
+            WDFrom = openWeather.getWeatherData(this.CurrentTour.From);
+            WDTo = openWeather.getWeatherData(this.CurrentTour.To);
+
             //update database
             data.editTour(CurrentTour);
+
+            CurrentTour.TotalDistance = mapQuest.getTotalDistance(CurrentTour.From, CurrentTour.To);
         }
 
         //Methods
@@ -718,7 +724,7 @@ namespace TourPlanner_ViewModel
             {
                 if (type == "Json files(*.json) | *.json")
                 {
-                    List<TourLog> t = tour_log_import.JSON_Import(ofd.FileName);
+                    List<TourLog> t = tour_log_import.JSON_Import(ofd.FileName, CurrentTour.ID);
                     foreach (var item in t)
                         addTourLog(item);
                 }

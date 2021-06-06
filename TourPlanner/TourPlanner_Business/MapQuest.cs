@@ -18,42 +18,64 @@ namespace TourPlanner_Business
     {
         public string KEY = "Iyuj6MgMp3OZEU59aDLg5Si0oyXgC2l0";
         public string BASE_URL = "https://www.mapquestapi.com/staticmap/v5/map?start=";
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         public string getRouteImage(string from, string to)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + from + "_" + to + ".jpg";
-
-            if(!File.Exists(path))
+            try
             {
-                string url = BASE_URL + from + "&end=" + to + "&size=600,400@2x&key=" + KEY;
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + from + "_" + to + ".jpg";
+
+                if (!File.Exists(path))
+                {
+                    string url = BASE_URL + from + "&end=" + to + "&size=600,400@2x&key=" + KEY;
+                    var client = new RestClient(url);
+
+                    var request = new RestRequest();
+
+                    var response = client.Get(request);
+
+                    var fileBytes = client.DownloadData(request);
+
+                    File.WriteAllBytes(path, fileBytes);
+
+                }
+
+                return path;
+            }
+
+            catch(Exception ex)
+            {
+                log.Error(ex);
+                return "";
+            }
+
+        }
+
+        public float getTotalDistance(string from, string to)
+        {
+            try
+            {
+                string url = "http://www.mapquestapi.com/directions/v2/route?key=" + KEY + "&from=" + from + "&to=" + to;
                 var client = new RestClient(url);
 
                 var request = new RestRequest();
 
                 var response = client.Get(request);
 
-                var fileBytes = client.DownloadData(request);
+                JObject obj = JObject.Parse(response.Content);
 
-                File.WriteAllBytes(path, fileBytes);
-
+                return (float)obj["route"]["distance"];
             }
 
-            return path;
-        }
+            catch(Exception ex)
+            {
+                log.Error(ex);
+                return 0;
+            }
 
-        public float getTotalDistance(string from, string to)
-        {
-            string url = "http://www.mapquestapi.com/directions/v2/route?key=" + KEY + "&from=" + from + "&to=" + to;
-            var client = new RestClient(url);
 
-            var request = new RestRequest();
-
-            var response = client.Get(request);
-
-            JObject obj = JObject.Parse(response.Content);
-
-            return (float)obj["route"]["distance"];
 
         }
 

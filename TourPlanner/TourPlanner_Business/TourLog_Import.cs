@@ -15,10 +15,15 @@ namespace TourPlanner_Business
     public class TourLog_Import
     {
         //Import TourLog from JSON
-        public List<TourLog> JSON_Import(string path)
+        public List<TourLog> JSON_Import(string path, int id)
         {
             string json = System.IO.File.ReadAllText(path);
             var tour_logs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TourLog>>(json);
+
+            foreach(TourLog item in tour_logs)
+            {
+                item.TourID = id;
+            }
 
             return tour_logs.ToList();
         }
