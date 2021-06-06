@@ -26,74 +26,98 @@ namespace TourPlanner_DataAccess
         //SELECTs
         public List<Tour> getTours()
         {
-            CS = getConnectionString();
-
-            // Connect to a PostgreSQL database
             List<Tour> output = new List<Tour>();
-            using var con = new NpgsqlConnection(CS);
-            con.Open();
 
-            using (var cmd = new NpgsqlCommand("SELECT * FROM \"Tour\"", con))
+            try
             {
+                CS = getConnectionString();
 
-                using (var reader = cmd.ExecuteReader())
+                // Connect to a PostgreSQL database
+
+                using var con = new NpgsqlConnection(CS);
+                con.Open();
+
+                using (var cmd = new NpgsqlCommand("SELECT * FROM \"Tour\"", con))
                 {
-                    while (reader.Read())
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        output.Add(new Tour(
-                            reader.GetInt32(reader.GetOrdinal("tour_id")),
-                            reader.GetString(reader.GetOrdinal("tour_name")),
-                            reader.GetString(reader.GetOrdinal("tour_description")),
-                            "image",
-                            reader.GetString(reader.GetOrdinal("from")),
-                            reader.GetString(reader.GetOrdinal("to")),
-                            reader.GetFloat(reader.GetOrdinal("total_distance"))
-                            ));
+                        while (reader.Read())
+                        {
+                            output.Add(new Tour(
+                                reader.GetInt32(reader.GetOrdinal("tour_id")),
+                                reader.GetString(reader.GetOrdinal("tour_name")),
+                                reader.GetString(reader.GetOrdinal("tour_description")),
+                                "image",
+                                reader.GetString(reader.GetOrdinal("from")),
+                                reader.GetString(reader.GetOrdinal("to")),
+                                reader.GetFloat(reader.GetOrdinal("total_distance"))
+                                ));
+                        }
                     }
+
+
                 }
 
+                return output;
 
             }
 
-            return output;
+            catch(Exception ex)
+            {
+                log.Error(ex);
+                return output;
+            }
+           
         }
 
         public List<TourLog> getTourLogs()
         {
-            CS = getConnectionString();
-
-            // Connect to a PostgreSQL database
             List<TourLog> output = new List<TourLog>();
-            using var con = new NpgsqlConnection(CS);
-            con.Open();
-
-            using (var cmd = new NpgsqlCommand("SELECT * FROM \"Tour_Log\"", con))
+            try
             {
+                CS = getConnectionString();
 
-                using (var reader = cmd.ExecuteReader())
+                // Connect to a PostgreSQL database
+
+                using var con = new NpgsqlConnection(CS);
+                con.Open();
+
+                using (var cmd = new NpgsqlCommand("SELECT * FROM \"Tour_Log\"", con))
                 {
-                    while (reader.Read())
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        output.Add(new TourLog(
-                            reader.GetInt32(reader.GetOrdinal("tour_id")),
-                            reader.GetInt32(reader.GetOrdinal("tour_log_id")),
-                            reader.GetString(reader.GetOrdinal("timestamp")),
-                            reader.GetString(reader.GetOrdinal("report")),
-                            reader.GetFloat(reader.GetOrdinal("distance")),
-                            reader.GetString(reader.GetOrdinal("total_time")),
-                            reader.GetInt32(reader.GetOrdinal("rating")),
-                            reader.GetString(reader.GetOrdinal("weather")),
-                            reader.GetInt32(reader.GetOrdinal("difficulty")),
-                            reader.GetString(reader.GetOrdinal("vehicle")),
-                            reader.GetBoolean(reader.GetOrdinal("recommendation")),
-                            reader.GetInt32(reader.GetOrdinal("participants"))
-                            ));
+                        while (reader.Read())
+                        {
+                            output.Add(new TourLog(
+                                reader.GetInt32(reader.GetOrdinal("tour_id")),
+                                reader.GetInt32(reader.GetOrdinal("tour_log_id")),
+                                reader.GetString(reader.GetOrdinal("timestamp")),
+                                reader.GetString(reader.GetOrdinal("report")),
+                                reader.GetFloat(reader.GetOrdinal("distance")),
+                                reader.GetString(reader.GetOrdinal("total_time")),
+                                reader.GetInt32(reader.GetOrdinal("rating")),
+                                reader.GetString(reader.GetOrdinal("weather")),
+                                reader.GetInt32(reader.GetOrdinal("difficulty")),
+                                reader.GetString(reader.GetOrdinal("vehicle")),
+                                reader.GetBoolean(reader.GetOrdinal("recommendation")),
+                                reader.GetInt32(reader.GetOrdinal("participants"))
+                                ));
+                        }
                     }
+
                 }
 
-            } 
+                return output;
+            }
 
-            return output;
+            catch(Exception ex)
+            {
+                log.Error(ex);
+                return output;
+            }
+         
         }
 
         //INSERTs
@@ -193,8 +217,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
         }
@@ -230,8 +255,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
         }
@@ -257,8 +283,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
         }
@@ -283,8 +310,9 @@ namespace TourPlanner_DataAccess
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                log.Error(ex);
                 return false;
             }
         }

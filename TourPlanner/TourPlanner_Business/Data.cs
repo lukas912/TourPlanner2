@@ -57,8 +57,47 @@ namespace TourPlanner_Business
         }
 
         public bool editTourLog(TourLog tourlog)
+        {   
+            if(validateTourLog(tourlog) == true)
+            {
+                return dbc.editTourLog(tourlog);
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private bool validateTourLog(TourLog tourlog)
         {
-            return dbc.editTourLog(tourlog);
+
+            if(tourlog.Difficulty <= 0 || tourlog.Difficulty > 10)
+            {
+                return false;
+            }
+
+            else if (tourlog.Distance <= 0)
+            {
+                return false;
+            }
+
+            else if(tourlog.Participants <= 0)
+            {
+                return false;
+            }
+
+            else if(tourlog.Rating < 1 || tourlog.Rating > 5)
+            {
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

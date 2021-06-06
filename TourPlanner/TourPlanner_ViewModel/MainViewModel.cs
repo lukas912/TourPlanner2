@@ -309,7 +309,16 @@ namespace TourPlanner_ViewModel
 
             EditTourLogCommand = new RelayCommand((_) =>
             {
-                data.editTourLog(CurrentTourLog);
+                if (data.editTourLog(CurrentTourLog)) 
+                {
+                    log.Info("Tour Log Edit Success");
+                }
+
+                else
+                {
+                    MessageBox.Show("Inputs are not valid!");
+                }
+
                 Debug.WriteLine("EDIT TOUR LOG"+ CurrentTourLog.Report);
             });
 
