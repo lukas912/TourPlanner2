@@ -493,7 +493,7 @@ namespace TourPlanner_ViewModel
             log.Info("Tour Log added");
         }
 
-        private void addTour(Tour t)
+        public void addTour(Tour t)
         {
 
             //Database
@@ -563,7 +563,7 @@ namespace TourPlanner_ViewModel
             WDTo = getWeatherData(CurrentTour.To);
         }
 
-        private void loadTourData()
+        public void loadTourData()
         {
             //Load Tours
 

@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace TourPlanner_Test
+namespace TourPlanner_Unit_Tests
 {
     public class Tests
     {

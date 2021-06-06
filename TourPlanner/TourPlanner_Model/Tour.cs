@@ -26,5 +26,25 @@ namespace TourPlanner_Model
             this.To = to;
             this.TotalDistance = td;
         }
+
+        public string getTitle()
+        {
+            return this.Title;
+        }
+
+        public string getFrom()
+        {
+            return this.From;
+        }
+
+        public string getTo()
+        {
+            return this.To;
+        }
+
+        public float getTotalDistance()
+        {
+            return this.TotalDistance;
+        }
     }
 }

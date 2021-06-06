@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_UI", "TourPlanner\TourPlanner_UI.csproj", "{2F70FC95-9B37-462D-A65F-475F408B122C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Model", "TourPlanner_Model\TourPlanner_Model.csproj", "{EF543F95-485F-4CE0-877A-535C62FFA388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_Model", "TourPlanner_Model\TourPlanner_Model.csproj", "{EF543F95-485F-4CE0-877A-535C62FFA388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_DataAccess", "TourPlanner_DataAccess\TourPlanner_DataAccess.csproj", "{478697D2-AF2B-4027-A696-A9831113523C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_DataAccess", "TourPlanner_DataAccess\TourPlanner_DataAccess.csproj", "{478697D2-AF2B-4027-A696-A9831113523C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Business", "TourPlanner_Business\TourPlanner_Business.csproj", "{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_Business", "TourPlanner_Business\TourPlanner_Business.csproj", "{CAAA9B6D-96CF-4406-B3E3-DFC71C1F7A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_ViewModel", "TourPlanner_ViewModel\TourPlanner_ViewModel.csproj", "{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner_ViewModel", "TourPlanner_ViewModel\TourPlanner_ViewModel.csproj", "{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Test", "TourPlanner_Test\TourPlanner_Test.csproj", "{52DC21B5-BD7C-40B1-AEC6-FF13B730903A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner_Test", "TourPlanner_Test\TourPlanner_Test.csproj", "{96AC6D07-00B4-4174-B77A-171BF341AEB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A18B6266-3C3D-4BEC-A68E-632AA3B1C241}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52DC21B5-BD7C-40B1-AEC6-FF13B730903A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52DC21B5-BD7C-40B1-AEC6-FF13B730903A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52DC21B5-BD7C-40B1-AEC6-FF13B730903A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52DC21B5-BD7C-40B1-AEC6-FF13B730903A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AC6D07-00B4-4174-B77A-171BF341AEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AC6D07-00B4-4174-B77A-171BF341AEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AC6D07-00B4-4174-B77A-171BF341AEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AC6D07-00B4-4174-B77A-171BF341AEB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

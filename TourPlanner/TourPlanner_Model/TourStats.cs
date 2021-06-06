@@ -55,5 +55,10 @@ namespace TourPlanner_Model
 
             this.RecommendationRate = rc_true / (rc_true + rc_false);
         }
+
+        public float getRecommendationRate()
+        {
+            return this.RecommendationRate;
+        }
     }
 }
