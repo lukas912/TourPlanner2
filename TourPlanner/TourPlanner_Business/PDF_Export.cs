@@ -14,6 +14,8 @@ namespace TourPlanner_Business
 {
     public class PDF_Export
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public void exportTourReport(Tour tour, List<TourLog> tour_logs, string path)
         {
             // Create a new PDF document
@@ -102,7 +104,17 @@ namespace TourPlanner_Business
 
             DrawImage(gfx2, tour.Image, 50, 50);
 
-            document.Save(path);
+            try
+            {
+                document.Save(path);
+            }
+
+            catch(Exception ex)
+            {
+                log.Error(ex);
+            }
+
+
 
 
         }
@@ -206,8 +218,15 @@ namespace TourPlanner_Business
             gfx.DrawString("Reccomendation Rate: " + (ts.RecommendationRate * 100).ToString() + "%", log_font, XBrushes.Black,
             new XRect(x, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
 
-            document.Save(path);
+            try
+            {
+                document.Save(path);
+            }
 
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
 
         }
 

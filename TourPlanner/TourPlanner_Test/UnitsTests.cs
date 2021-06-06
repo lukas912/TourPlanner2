@@ -197,7 +197,7 @@ namespace TourPlanner_Test
 
             try
             {
-                List<TourLog> logs = tli.JSON_Import(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\" + "tourlogstest.json");
+                List<TourLog> logs = tli.JSON_Import(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\" + "tourlogstest.json", 0);
                 return; // indicates success
             }
             catch (Exception ex)
@@ -350,6 +350,35 @@ namespace TourPlanner_Test
             Tour t = new Tour(0, "Tour 1", "Beschreibung", "test.jpg", "Wien", "Bregenz", 1.0f);
 
             Assert.AreEqual(1.0f, t.getTotalDistance());
+        }
+
+        //Validate TourLog tests
+
+        [Test]
+        public void validateTourLogTest1()
+        {
+            TourLog l1 = new TourLog(0, 0, "2020-01-02", "Fine", 23.02f, "1:34", 4, "Sunny", 10, "Bike", true, 2);
+            Data data = new Data();
+
+            Assert.IsTrue(data.validateTourLog(l1));
+        }
+
+        [Test]
+        public void validateTourLogTest2()
+        {
+            TourLog l1 = new TourLog(0, 0, "2020-01-02", "Fine", 23.02f, "1:34", 6, "Sunny", 10, "Bike", true, 2);
+            Data data = new Data();
+
+            Assert.IsFalse(data.validateTourLog(l1));
+        }
+
+        [Test]
+        public void validateTourLogTest3()
+        {
+            TourLog l1 = new TourLog(0, 0, "2020-01-02", "Fine", 23.02f, "1:34", 4, "Sunny", -2, "Bike", true, 2);
+            Data data = new Data();
+
+            Assert.IsFalse(data.validateTourLog(l1));
         }
 
     }

@@ -70,7 +70,7 @@ namespace TourPlanner_Business
 
         }
 
-        private bool validateTourLog(TourLog tourlog)
+        public bool validateTourLog(TourLog tourlog)
         {
 
             if(tourlog.Difficulty <= 0 || tourlog.Difficulty > 10)
