@@ -42,6 +42,10 @@ namespace TourPlanner_ViewModel
 
         private WeatherData _wdTo;
 
+        //Instance Singleton
+
+        MyTourSearch myTourSearch = MyTourSearch.Instance;
+
 
         //Properties
 
@@ -221,6 +225,8 @@ namespace TourPlanner_ViewModel
             log4net.Config.XmlConfigurator.Configure();
             log.Info("Application started");
 
+         
+
             //Commands
 
             //Create new Tour
@@ -284,8 +290,8 @@ namespace TourPlanner_ViewModel
             //Search Tour
             SearchTourCommand = new RelayCommand((_) =>
             {
-                Tours = new ObservableCollection<Tour>(TourSearch.searchTours(Tours.ToList(), SearchInput));
-                currentTourLogs = new ObservableCollection<TourLog>(TourSearch.searchTourLogs(TourLogs.ToList(), SearchInput));
+                Tours = new ObservableCollection<Tour>(myTourSearch.searchTours(Tours.ToList(), SearchInput));
+                currentTourLogs = new ObservableCollection<TourLog>(myTourSearch.searchTourLogs(TourLogs.ToList(), SearchInput));
                 log.Info("Search Tour and Tour Logs");
             });
 
